@@ -728,6 +728,10 @@ $(document).ready(function () {
         }
     });
 
+    $(".jq_ms_div").scroll(function () {
+        $(".jq_title_div").scrollLeft($(".jq_ms_div").scrollLeft());
+    });
+
 });
 
 

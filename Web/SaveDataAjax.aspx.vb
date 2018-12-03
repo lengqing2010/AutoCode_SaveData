@@ -10,7 +10,7 @@ Partial Class SaveDataAjax
 
         If type = "save" Then
             Dim SaveDataAjaxBC As New SaveDataAjaxBC
-            Dim no As String = Now.ToString("HHmmssfff")
+            Dim no As String = SaveDataAjaxBC.SelMaxNo
             Dim edp_no As String = Request.Form("tbxedpNo_key")
             Dim system_name As String = Request.Form("tbxsystemName_key")
             Dim title As String = Request.Form("tbxtitle_key")
@@ -21,7 +21,18 @@ Partial Class SaveDataAjax
             Dim data_html As String = Request.Form("data_html")
             Dim shareType As String = IIf(Request.Form("shareType") = "on", 1, 0)
 
-            SaveDataAjaxBC.InsMData(no, edp_no, system_name, kind, title, child_title, data_txt, data_html, "", "", "", "", "", tbxSavePath, shareType, "", "")
+
+            If SaveDataAjaxBC.SelMData(no, edp_no, system_name, kind).Rows.Count > 0 Then
+                'Is have data
+                'Update
+                SaveDataAjaxBC.UpdMData(no, edp_no, system_name, kind, no, edp_no, system_name, kind, title, child_title, data_txt, data_html, "", "", "", "", "", tbxSavePath, shareType, "", "")
+            Else
+                'No data
+                'Insert
+                SaveDataAjaxBC.InsMData(no, edp_no, system_name, kind, title, child_title, data_txt, data_html, "", "", "", "", "", tbxSavePath, shareType, "", "")
+            End If
+
+
 
 
         End If

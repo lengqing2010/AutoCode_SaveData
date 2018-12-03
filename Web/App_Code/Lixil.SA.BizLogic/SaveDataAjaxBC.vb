@@ -267,4 +267,13 @@ Public Class SaveDataAjaxBC
 
     End Function
 
+    ''' <summary>
+    ''' MAX No
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function SelMaxNo() As String
+        Return DA.SelMaxNo
+    End Function
+
 End Class

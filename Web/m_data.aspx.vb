@@ -37,57 +37,57 @@ Partial Class m_data
         'EMAB障害対応情報の格納処理
         EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
         MyMethod.GetCurrentMethod.Name)
-        Me.tbxno.Attributes.Item("itType") = "int"
-        Me.tbxno.Attributes.Item("itLength") = "4"
-        Me.tbxno.Attributes.Item("itName") = "番号"
-        Me.tbxedpNo.Attributes.Item("itType") = "nvarchar"
-        Me.tbxedpNo.Attributes.Item("itLength") = "10"
-        Me.tbxedpNo.Attributes.Item("itName") = "EDP番号"
-        Me.tbxsystemName.Attributes.Item("itType") = "nvarchar"
-        Me.tbxsystemName.Attributes.Item("itLength") = "50"
-        Me.tbxsystemName.Attributes.Item("itName") = "システム名"
-        Me.tbxkind.Attributes.Item("itType") = "nvarchar"
-        Me.tbxkind.Attributes.Item("itLength") = "20"
-        Me.tbxkind.Attributes.Item("itName") = "種類"
-        Me.tbxtitle.Attributes.Item("itType") = "nvarchar"
-        Me.tbxtitle.Attributes.Item("itLength") = "200"
-        Me.tbxtitle.Attributes.Item("itName") = "タイトル"
-        Me.tbxchildTitle.Attributes.Item("itType") = "nvarchar"
-        Me.tbxchildTitle.Attributes.Item("itLength") = "200"
-        Me.tbxchildTitle.Attributes.Item("itName") = "子タイトル"
-        Me.tbxdataTxt.Attributes.Item("itType") = "ntext"
-        Me.tbxdataTxt.Attributes.Item("itLength") = "8"
-        Me.tbxdataTxt.Attributes.Item("itName") = "内容TXT"
-        Me.tbxdataHtml.Attributes.Item("itType") = "ntext"
-        Me.tbxdataHtml.Attributes.Item("itLength") = "8"
-        Me.tbxdataHtml.Attributes.Item("itName") = "内容HTML"
-        Me.tbxenclosure1.Attributes.Item("itType") = "ntext"
-        Me.tbxenclosure1.Attributes.Item("itLength") = "8"
-        Me.tbxenclosure1.Attributes.Item("itName") = "添付ファイル１"
-        Me.tbxenclosure2.Attributes.Item("itType") = "ntext"
-        Me.tbxenclosure2.Attributes.Item("itLength") = "8"
-        Me.tbxenclosure2.Attributes.Item("itName") = "添付ファイル２"
-        Me.tbxenclosure3.Attributes.Item("itType") = "ntext"
-        Me.tbxenclosure3.Attributes.Item("itLength") = "8"
-        Me.tbxenclosure3.Attributes.Item("itName") = "添付ファイル３"
-        Me.tbxenclosure4.Attributes.Item("itType") = "ntext"
-        Me.tbxenclosure4.Attributes.Item("itLength") = "8"
-        Me.tbxenclosure4.Attributes.Item("itName") = "添付ファイル４"
-        Me.tbxenclosure5.Attributes.Item("itType") = "ntext"
-        Me.tbxenclosure5.Attributes.Item("itLength") = "8"
-        Me.tbxenclosure5.Attributes.Item("itName") = "添付ファイル５"
-        Me.tbxsavePath.Attributes.Item("itType") = "nvarchar"
-        Me.tbxsavePath.Attributes.Item("itLength") = "800"
-        Me.tbxsavePath.Attributes.Item("itName") = "保存パス"
-        Me.tbxshareType.Attributes.Item("itType") = "nvarchar"
-        Me.tbxshareType.Attributes.Item("itLength") = "1"
-        Me.tbxshareType.Attributes.Item("itName") = "共有"
-        Me.tbxtourokuUser.Attributes.Item("itType") = "nvarchar"
-        Me.tbxtourokuUser.Attributes.Item("itLength") = "20"
-        Me.tbxtourokuUser.Attributes.Item("itName") = "登録者"
-        Me.tbxtourokuTime.Attributes.Item("itType") = "datetime"
-        Me.tbxtourokuTime.Attributes.Item("itLength") = "23,3"
-        Me.tbxtourokuTime.Attributes.Item("itName") = "登録時間"
+        Me.tbxNo.Attributes.Item("itType") = "int"
+        Me.tbxNo.Attributes.Item("itLength") = "4"
+        Me.tbxNo.Attributes.Item("itName") = "番号"
+        Me.tbxEdpNo.Attributes.Item("itType") = "nvarchar"
+        Me.tbxEdpNo.Attributes.Item("itLength") = "10"
+        Me.tbxEdpNo.Attributes.Item("itName") = "EDP番号"
+        Me.tbxSystemName.Attributes.Item("itType") = "nvarchar"
+        Me.tbxSystemName.Attributes.Item("itLength") = "50"
+        Me.tbxSystemName.Attributes.Item("itName") = "システム名"
+        Me.tbxKind.Attributes.Item("itType") = "nvarchar"
+        Me.tbxKind.Attributes.Item("itLength") = "20"
+        Me.tbxKind.Attributes.Item("itName") = "種類"
+        Me.tbxTitle.Attributes.Item("itType") = "nvarchar"
+        Me.tbxTitle.Attributes.Item("itLength") = "200"
+        Me.tbxTitle.Attributes.Item("itName") = "タイトル"
+        Me.tbxChildTitle.Attributes.Item("itType") = "nvarchar"
+        Me.tbxChildTitle.Attributes.Item("itLength") = "200"
+        Me.tbxChildTitle.Attributes.Item("itName") = "子タイトル"
+        Me.tbxDataTxt.Attributes.Item("itType") = "ntext"
+        Me.tbxDataTxt.Attributes.Item("itLength") = "8"
+        Me.tbxDataTxt.Attributes.Item("itName") = "内容TXT"
+        Me.tbxDataHtml.Attributes.Item("itType") = "ntext"
+        Me.tbxDataHtml.Attributes.Item("itLength") = "8"
+        Me.tbxDataHtml.Attributes.Item("itName") = "内容HTML"
+        Me.tbxEnclosure1.Attributes.Item("itType") = "ntext"
+        Me.tbxEnclosure1.Attributes.Item("itLength") = "8"
+        Me.tbxEnclosure1.Attributes.Item("itName") = "添付ファイル１"
+        Me.tbxEnclosure2.Attributes.Item("itType") = "ntext"
+        Me.tbxEnclosure2.Attributes.Item("itLength") = "8"
+        Me.tbxEnclosure2.Attributes.Item("itName") = "添付ファイル２"
+        Me.tbxEnclosure3.Attributes.Item("itType") = "ntext"
+        Me.tbxEnclosure3.Attributes.Item("itLength") = "8"
+        Me.tbxEnclosure3.Attributes.Item("itName") = "添付ファイル３"
+        Me.tbxEnclosure4.Attributes.Item("itType") = "ntext"
+        Me.tbxEnclosure4.Attributes.Item("itLength") = "8"
+        Me.tbxEnclosure4.Attributes.Item("itName") = "添付ファイル４"
+        Me.tbxEnclosure5.Attributes.Item("itType") = "ntext"
+        Me.tbxEnclosure5.Attributes.Item("itLength") = "8"
+        Me.tbxEnclosure5.Attributes.Item("itName") = "添付ファイル５"
+        Me.tbxSavePath.Attributes.Item("itType") = "nvarchar"
+        Me.tbxSavePath.Attributes.Item("itLength") = "800"
+        Me.tbxSavePath.Attributes.Item("itName") = "保存パス"
+        Me.tbxShareType.Attributes.Item("itType") = "nvarchar"
+        Me.tbxShareType.Attributes.Item("itLength") = "1"
+        Me.tbxShareType.Attributes.Item("itName") = "共有"
+        Me.tbxTourokuUser.Attributes.Item("itType") = "nvarchar"
+        Me.tbxTourokuUser.Attributes.Item("itLength") = "20"
+        Me.tbxTourokuUser.Attributes.Item("itName") = "登録者"
+        Me.tbxTourokuTime.Attributes.Item("itType") = "datetime"
+        Me.tbxTourokuTime.Attributes.Item("itLength") = "23,3"
+        Me.tbxTourokuTime.Attributes.Item("itName") = "登録時間"
 
     End Sub
 
@@ -129,8 +129,7 @@ Partial Class m_data
         'EMAB障害対応情報の格納処理
         EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
         MyMethod.GetCurrentMethod.Name)
-        Return BC.SelMData(tbxno_key.Text, tbxedpNo_key.Text, tbxsystemName_key.Text, tbxkind_key.Text)
-
+        Return BC.SelMData(tbxNo_key.Text, tbxEdpNo_key.Text, tbxSystemName_key.Text, tbxKind_key.Text)
     End Function
 
     ''' <summary>
@@ -143,8 +142,7 @@ Partial Class m_data
         'EMAB障害対応情報の格納処理
         EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
         MyMethod.GetCurrentMethod.Name)
-        Return BC.SelMData(tbxno.Text, tbxedpNo.Text, tbxsystemName.Text, tbxkind.Text).Rows.Count > 0
-
+        Return BC.SelMData(tbxNo.Text, tbxEdpNo.Text, tbxSystemName.Text, tbxKind.Text).Rows.Count > 0
     End Function
 
     ''' <summary>
@@ -166,6 +164,7 @@ Partial Class m_data
             Common.ShowMsg(Me.Page, ex.Message)
             Exit Sub
         End Try
+        Me.hidOldRowIdx.Text = ""
     End Sub
     ''' <summary>
     ''' 登録
@@ -190,6 +189,7 @@ Partial Class m_data
             Common.ShowMsg(Me.Page, ex.Message)
             Exit Sub
         End Try
+        Me.hidOldRowIdx.Text = ""
     End Sub
 
     ''' <summary>
@@ -211,6 +211,7 @@ Partial Class m_data
             Common.ShowMsg(Me.Page, ex.Message)
             Exit Sub
         End Try
+        Me.hidOldRowIdx.Text = ""
     End Sub
 
 End Class

@@ -51,7 +51,7 @@
           </td>
           </tr>
       </table>
-<div id="divGvw" class='jq_ms_div' runat ="server" style="overflow:auto ; height:294px;margin-left:0px; width:405px; margin-top :0px; border-collapse :collapse ;">
+<div id="divGvw" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:294px;margin-left:0px; width:405px; margin-top :0px; border-collapse :collapse ;">
    <asp:GridView CssClass ="jq_ms" Width="385px"  runat="server" ID="gvMs" EnableTheming="True" ShowHeader="False" AutoGenerateColumns="False" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
       <Columns>
           <asp:TemplateField><ItemTemplate ><%#Eval("edp_no")%></ItemTemplate><ItemStyle Width="170px" HorizontalAlign="Left" CssClass="jq_edp_no" /></asp:TemplateField>

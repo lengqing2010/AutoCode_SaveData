@@ -88,6 +88,32 @@ Public Class SaveDataAjaxDA
     End Function
 
     ''' <summary>
+    ''' MAX No
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function SelMaxNo() As String
+        'EMAB障害対応情報の格納処理
+        EMAB.AddMethodEntrance(MyClass.GetType.FullName & "." & MyMethod.GetCurrentMethod.Name)
+        'SQLコメント
+        '--**テーブル：資料 : m_data
+        Dim sb As New StringBuilder
+        'SQL文
+        sb.AppendLine("SELECT")
+        sb.AppendLine("MAX(no)+1")                                                            '番号
+        sb.AppendLine("FROM m_data")
+
+        'バラメタ格納
+        Dim paramList As New List(Of SqlParameter)
+
+        Dim dsInfo As New Data.DataSet
+        FillDataset(DataAccessManager.Connection, CommandType.Text, sb.ToString(), dsInfo, "SelMaxNo", paramList.ToArray)
+
+        Return dsInfo.Tables("SelMaxNo").Rows(0).Item(0).ToString
+
+    End Function
+
+    ''' <summary>
     ''' 資料保存する
     ''' 資料情報を更新する
     ''' </summary>
