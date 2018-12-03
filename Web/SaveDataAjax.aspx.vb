@@ -22,6 +22,8 @@ Partial Class SaveDataAjax
             Dim shareType As String = IIf(Request.Form("shareType") = "on", 1, 0)
 
             SaveDataAjaxBC.InsMData(no, edp_no, system_name, kind, title, child_title, data_txt, data_html, "", "", "", "", "", tbxSavePath, shareType, "", "")
+
+
         End If
 
 

@@ -260,7 +260,51 @@
       </table>
 
     <br />
-       
+<div id="divGvw" class='jq_ms_div' style="overflow:hidden ; height:294px;margin-left:0px; width:1000px; margin-top :0px; border-collapse :collapse ;">
+      <table class='ms_title' style="width:1330px" cellpadding="0" cellspacing="0">
+          <tr>
+              <td style="width:74px;">
+                  番号 4
+              </td>
+              <td style="width:170px;">
+                  EDP番号 10
+              </td>
+              <td style="width:210px;">
+                  システム名 50
+              </td>
+              <td style="width:210px;">
+                  種類 20
+              </td>
+              <td style="width:210px;">
+                  タイトル 200
+              </td>
+              <td style="width:210px;">
+                  子タイトル 200
+              </td>
+              <td style="width:210px;">
+                  保存パス 800
+              </td>
+              <td style="">
+                  共有 1
+              </td>
+          </tr>
+
+      </table>
+</div>
+<div id="divGvw" class='jq_ms_div' style="overflow:auto ; height:294px;margin-left:0px; width:1000px; margin-top :0px; border-collapse :collapse ;">
+   <asp:GridView CssClass ="jq_ms" Width="1360px"  runat="server" ID="gvMs" EnableTheming="True" ShowHeader="False" AutoGenerateColumns="False" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
+      <Columns>
+          <asp:TemplateField><ItemTemplate ><%#Eval("no")%></ItemTemplate><ItemStyle Width="74px" HorizontalAlign="Left" CssClass="jq_no" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("edp_no")%></ItemTemplate><ItemStyle Width="170px" HorizontalAlign="Left" CssClass="jq_edp_no" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("system_name")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_system_name" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("kind")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_kind" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("title")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_title" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("child_title")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_child_title" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("save_path")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_save_path" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("share_type")%></ItemTemplate><ItemStyle HorizontalAlign="Left" CssClass="jq_share_type" /></asp:TemplateField>
+      </Columns>
+   </asp:GridView>
+</div>
         <input type ="button" value="save" onclick="save_ajax()" />
 
         <div style="height:300px;" id="editorDiv"></div>
