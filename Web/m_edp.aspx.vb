@@ -37,26 +37,26 @@ Partial Class m_edp
       'EMAB障害対応情報の格納処理
        EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
        MyMethod.GetCurrentMethod.Name)
-       Me.tbxEdpNo.Attributes.Item("itType") = "nvarchar"
-       Me.tbxEdpNo.Attributes.Item("itLength") = "10"
-       Me.tbxEdpNo.Attributes.Item("itName") = "EDP NUMBER"
-       Me.tbxEdpName.Attributes.Item("itType") = "nvarchar"
-       Me.tbxEdpName.Attributes.Item("itLength") = "200"
-       Me.tbxEdpName.Attributes.Item("itName") = "EDP_名"
+        Me.tbxEdpNo.Attributes.Item("itType") = "nvarchar"
+        Me.tbxEdpNo.Attributes.Item("itLength") = "10"
+        Me.tbxEdpNo.Attributes.Item("itName") = "EDP NUMBER"
+        Me.tbxEdpName.Attributes.Item("itType") = "nvarchar"
+        Me.tbxEdpName.Attributes.Item("itLength") = "200"
+        Me.tbxEdpName.Attributes.Item("itName") = "EDP_名"
 
     End Sub
 
     ''' <summary>
     ''' 明細項目設定
     ''' </summary>
-    public Sub MsInit()
-      'EMAB障害対応情報の格納処理
-       EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
-       MyMethod.GetCurrentMethod.Name)
-            '明細設定
-            Dim dt As DataTable = GetMsData()
-            Me.gvMs.DataSource = dt
-            Me.gvMs.DataBind()
+    Public Sub MsInit()
+        'EMAB障害対応情報の格納処理
+        EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
+        MyMethod.GetCurrentMethod.Name)
+        '明細設定
+        Dim dt As DataTable = GetMsData()
+        Me.gvMs.DataSource = dt
+        Me.gvMs.DataBind()
 
     End Sub
 
@@ -81,10 +81,10 @@ Partial Class m_edp
     ''' <remarks></remarks>
     Private Function GetMsData() As Data.DataTable
 
-      'EMAB障害対応情報の格納処理
-       EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
-       MyMethod.GetCurrentMethod.Name)
-       Return BC.SelMEdp(tbxEdpNo_key.Text)
+        'EMAB障害対応情報の格納処理
+        EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
+        MyMethod.GetCurrentMethod.Name)
+        Return BC.SelMEdp(tbxEdpNo_key.Text)
     End Function
 
     ''' <summary>
@@ -94,10 +94,10 @@ Partial Class m_edp
     ''' <remarks></remarks>
     Private Function IsHaveData() As Boolean
 
-      'EMAB障害対応情報の格納処理
-       EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
-       MyMethod.GetCurrentMethod.Name)
-       Return BC.SelMEdp(tbxEdpNo.Text).Rows.Count > 0
+        'EMAB障害対応情報の格納処理
+        EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
+        MyMethod.GetCurrentMethod.Name)
+        Return BC.SelMEdp(tbxEdpNo.Text).Rows.Count > 0
     End Function
 
     ''' <summary>
