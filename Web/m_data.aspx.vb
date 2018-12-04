@@ -37,54 +37,30 @@ Partial Class m_data
       'EMAB障害対応情報の格納処理
        EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
        MyMethod.GetCurrentMethod.Name)
-       Me.tbxNo.Attributes.Item("itType") = "int"
-       Me.tbxNo.Attributes.Item("itLength") = "4"
-       Me.tbxNo.Attributes.Item("itName") = "番号"
+       Me.tbxDataOwner.Attributes.Item("itType") = "nvarchar"
+       Me.tbxDataOwner.Attributes.Item("itLength") = "10"
+       Me.tbxDataOwner.Attributes.Item("itName") = "所有者"
+       Me.tbxFileName.Attributes.Item("itType") = "nvarchar"
+       Me.tbxFileName.Attributes.Item("itLength") = "100"
+       Me.tbxFileName.Attributes.Item("itName") = "ファイル名"
        Me.tbxEdpNo.Attributes.Item("itType") = "nvarchar"
-       Me.tbxEdpNo.Attributes.Item("itLength") = "10"
+       Me.tbxEdpNo.Attributes.Item("itLength") = "8"
        Me.tbxEdpNo.Attributes.Item("itName") = "EDP番号"
        Me.tbxSystemName.Attributes.Item("itType") = "nvarchar"
-       Me.tbxSystemName.Attributes.Item("itLength") = "50"
+       Me.tbxSystemName.Attributes.Item("itLength") = "16"
        Me.tbxSystemName.Attributes.Item("itName") = "システム名"
-       Me.tbxKind.Attributes.Item("itType") = "nvarchar"
-       Me.tbxKind.Attributes.Item("itLength") = "20"
-       Me.tbxKind.Attributes.Item("itName") = "種類"
-       Me.tbxTitle.Attributes.Item("itType") = "nvarchar"
-       Me.tbxTitle.Attributes.Item("itLength") = "200"
-       Me.tbxTitle.Attributes.Item("itName") = "タイトル"
-       Me.tbxChildTitle.Attributes.Item("itType") = "nvarchar"
-       Me.tbxChildTitle.Attributes.Item("itLength") = "200"
-       Me.tbxChildTitle.Attributes.Item("itName") = "子タイトル"
+       Me.tbxEditorKind.Attributes.Item("itType") = "nvarchar"
+       Me.tbxEditorKind.Attributes.Item("itLength") = "20"
+       Me.tbxEditorKind.Attributes.Item("itName") = "Editor種類"
        Me.tbxDataTxt.Attributes.Item("itType") = "ntext"
        Me.tbxDataTxt.Attributes.Item("itLength") = "8"
        Me.tbxDataTxt.Attributes.Item("itName") = "内容TXT"
        Me.tbxDataHtml.Attributes.Item("itType") = "ntext"
        Me.tbxDataHtml.Attributes.Item("itLength") = "8"
        Me.tbxDataHtml.Attributes.Item("itName") = "内容HTML"
-       Me.tbxEnclosure1.Attributes.Item("itType") = "ntext"
-       Me.tbxEnclosure1.Attributes.Item("itLength") = "8"
-       Me.tbxEnclosure1.Attributes.Item("itName") = "添付ファイル１"
-       Me.tbxEnclosure2.Attributes.Item("itType") = "ntext"
-       Me.tbxEnclosure2.Attributes.Item("itLength") = "8"
-       Me.tbxEnclosure2.Attributes.Item("itName") = "添付ファイル２"
-       Me.tbxEnclosure3.Attributes.Item("itType") = "ntext"
-       Me.tbxEnclosure3.Attributes.Item("itLength") = "8"
-       Me.tbxEnclosure3.Attributes.Item("itName") = "添付ファイル３"
-       Me.tbxEnclosure4.Attributes.Item("itType") = "ntext"
-       Me.tbxEnclosure4.Attributes.Item("itLength") = "8"
-       Me.tbxEnclosure4.Attributes.Item("itName") = "添付ファイル４"
-       Me.tbxEnclosure5.Attributes.Item("itType") = "ntext"
-       Me.tbxEnclosure5.Attributes.Item("itLength") = "8"
-       Me.tbxEnclosure5.Attributes.Item("itName") = "添付ファイル５"
-       Me.tbxSavePath.Attributes.Item("itType") = "nvarchar"
-       Me.tbxSavePath.Attributes.Item("itLength") = "800"
-       Me.tbxSavePath.Attributes.Item("itName") = "保存パス"
        Me.tbxShareType.Attributes.Item("itType") = "nvarchar"
        Me.tbxShareType.Attributes.Item("itLength") = "1"
        Me.tbxShareType.Attributes.Item("itName") = "共有"
-       Me.tbxTourokuUser.Attributes.Item("itType") = "nvarchar"
-       Me.tbxTourokuUser.Attributes.Item("itLength") = "20"
-       Me.tbxTourokuUser.Attributes.Item("itName") = "登録者"
        Me.tbxTourokuTime.Attributes.Item("itType") = "datetime"
        Me.tbxTourokuTime.Attributes.Item("itLength") = "23,3"
        Me.tbxTourokuTime.Attributes.Item("itName") = "登録時間"
@@ -129,7 +105,7 @@ Partial Class m_data
       'EMAB障害対応情報の格納処理
        EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
        MyMethod.GetCurrentMethod.Name)
-       Return BC.SelMData(tbxNo_key.Text, tbxEdpNo_key.Text, tbxSystemName_key.Text, tbxKind_key.Text)
+       Return BC.SelMData(tbxDataOwner_key.Text, tbxFileName_key.Text, tbxEdpNo_key.Text, tbxSystemName_key.Text, tbxEditorKind_key.Text)
     End Function
 
     ''' <summary>
@@ -142,7 +118,7 @@ Partial Class m_data
       'EMAB障害対応情報の格納処理
        EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
        MyMethod.GetCurrentMethod.Name)
-       Return BC.SelMData(tbxNo.Text, tbxEdpNo.Text, tbxSystemName.Text, tbxKind.Text).Rows.Count > 0
+       Return BC.SelMData(tbxDataOwner.Text, tbxFileName.Text, tbxEdpNo.Text, tbxSystemName.Text, tbxEditorKind.Text).Rows.Count > 0
     End Function
 
     ''' <summary>
@@ -158,7 +134,7 @@ Partial Class m_data
                                MyMethod.GetCurrentMethod.Name)
 
             Try
-       BC.UpdMData(Convert.ToInt32(hidno.Text), hidedpNo.Text, hidsystemName.Text, hidkind.Text,Convert.ToInt32(tbxno.Text), tbxedpNo.Text, tbxsystemName.Text, tbxkind.Text, tbxtitle.Text, tbxchildTitle.Text, tbxdataTxt.Text, tbxdataHtml.Text, tbxenclosure1.Text, tbxenclosure2.Text, tbxenclosure3.Text, tbxenclosure4.Text, tbxenclosure5.Text, tbxsavePath.Text, tbxshareType.Text, tbxtourokuUser.Text, tbxtourokuTime.Text)
+       BC.UpdMData(hiddataOwner.Text, hidfileName.Text, hidedpNo.Text, hidsystemName.Text, hideditorKind.Text,tbxdataOwner.Text, tbxfileName.Text, tbxedpNo.Text, tbxsystemName.Text, tbxeditorKind.Text, tbxdataTxt.Text, tbxdataHtml.Text, tbxshareType.Text, tbxtourokuTime.Text)
         MsInit()
             Catch ex As Exception
                 Common.ShowMsg(Me.Page, ex.Message)
@@ -183,7 +159,7 @@ Me.hidOldRowIdx.Text = ""
                 Exit Sub
             End If
             Try
-            BC.InsMData(tbxno.Text, tbxedpNo.Text, tbxsystemName.Text, tbxkind.Text, tbxtitle.Text, tbxchildTitle.Text, tbxdataTxt.Text, tbxdataHtml.Text, tbxenclosure1.Text, tbxenclosure2.Text, tbxenclosure3.Text, tbxenclosure4.Text, tbxenclosure5.Text, tbxsavePath.Text, tbxshareType.Text, tbxtourokuUser.Text, tbxtourokuTime.Text)
+            BC.InsMData(tbxdataOwner.Text, tbxfileName.Text, tbxedpNo.Text, tbxsystemName.Text, tbxeditorKind.Text, tbxdataTxt.Text, tbxdataHtml.Text, tbxshareType.Text, tbxtourokuTime.Text)
                 MsInit()
             Catch ex As Exception
                 Common.ShowMsg(Me.Page, ex.Message)
@@ -205,7 +181,7 @@ Me.hidOldRowIdx.Text = ""
                                MyMethod.GetCurrentMethod.Name)
 
             Try
-       BC.DelMData(hidno.Text, hidedpNo.Text, hidsystemName.Text, hidkind.Text)
+       BC.DelMData(hiddataOwner.Text, hidfileName.Text, hidedpNo.Text, hidsystemName.Text, hideditorKind.Text)
         MsInit()
             Catch ex As Exception
                 Common.ShowMsg(Me.Page, ex.Message)

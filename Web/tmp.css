@@ -152,7 +152,7 @@ input[type="checkbox"].input-validation-error {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    margin-top: 0.75em;
+
     border: 0 none;
 }
 
@@ -169,22 +169,34 @@ td {
     height:16px;
     border-width:2px;
 }
+.ms_input {
+    margin-top:-1px;
+}
+.ms_input tr{
+    height:20px;
+}
+
+.ms_input td {
+    padding:1px;
+}
+.ms_input input{
+    /*border: black 2px inset ;*/
+    font-size: 11px;
+    margin:0 auto 0 auto;
+    height:16px;
+    padding:2px;
+}
+
+
 .ms_title td{
     background-color: #99ccff;
     border: black 1px solid;
     font-size: .85em;
     text-align:center;
     height:30px;
-
-}
-.ms_title input{
-    /*border: black 2px inset ;*/
-    font-size: 10px;
-    margin:0 auto 0 auto;
     padding:2px;
-    height:16px;
-    border-width:2px;
 }
+
 .jq_ms tr{
     cursor:pointer;
 }

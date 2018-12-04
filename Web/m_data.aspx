@@ -26,15 +26,21 @@
 <!--条件部-->
         <table class='jyouken_panel' cellpadding="0" cellspacing="0">
             <tr>
-            <td>番号 : &nbsp;</td>
+            <td>所有者 : &nbsp;</td>
             <td>
-              <asp:TextBox ID="tbxNo_key" class="" runat="server" style="width:64px;background-color: #FFAA00;"></asp:TextBox>
+              <asp:TextBox ID="tbxDataOwner_key" class="" runat="server" style="width:160px;background-color: #FFAA00;"></asp:TextBox>
+            </td>
+            </tr>
+            <tr>
+            <td>ファイル名 : &nbsp;</td>
+            <td>
+              <asp:TextBox ID="tbxFileName_key" class="" runat="server" style="width:200px;background-color: #FFAA00;"></asp:TextBox>
             </td>
             </tr>
             <tr>
             <td>EDP番号 : &nbsp;</td>
             <td>
-              <asp:TextBox ID="tbxEdpNo_key" class="" runat="server" style="width:160px;background-color: #FFAA00;"></asp:TextBox>
+              <asp:TextBox ID="tbxEdpNo_key" class="" runat="server" style="width:128px;background-color: #FFAA00;"></asp:TextBox>
             </td>
             </tr>
             <tr>
@@ -44,9 +50,9 @@
             </td>
             </tr>
             <tr>
-            <td>種類 : &nbsp;</td>
+            <td>Editor種類 : &nbsp;</td>
             <td>
-              <asp:TextBox ID="tbxKind_key" class="" runat="server" style="width:200px;background-color: #FFAA00;"></asp:TextBox>
+              <asp:TextBox ID="tbxEditorKind_key" class="" runat="server" style="width:200px;background-color: #FFAA00;"></asp:TextBox>
             </td>
             </tr>
         </table>
@@ -60,26 +66,23 @@
  <br /> <hr />
 
 <!--明細Title部-->
-<div id="divGvwTitle" class='jq_title_div' runat ="server" style="overflow:hidden ;margin-left:0px; width:1003px; margin-top :0px; border-collapse :collapse ;">
-      <table class='ms_title' style="width:2790px" cellpadding="0" cellspacing="0">
+<div id="divGvwTitle" class='jq_title_div' runat ="server" style="overflow:hidden ;margin-left:0px; width:1004px; margin-top :0px; border-collapse :collapse ;">
+      <table class='ms_title' style="width:1494px" cellpadding="0" cellspacing="0">
           <tr>
-              <td style="width:74px;">
-                  番号 4
-              </td>
               <td style="width:170px;">
-                  EDP番号 10
+                  所有者 10
               </td>
               <td style="width:210px;">
-                  システム名 50
+                  ファイル名 100
+              </td>
+              <td style="width:138px;">
+                  EDP番号 8
               </td>
               <td style="width:210px;">
-                  種類 20
+                  システム名 16
               </td>
               <td style="width:210px;">
-                  タイトル 200
-              </td>
-              <td style="width:210px;">
-                  子タイトル 200
+                  Editor種類 20
               </td>
               <td style="width:138px;">
                   内容TXT 8
@@ -87,131 +90,72 @@
               <td style="width:138px;">
                   内容HTML 8
               </td>
-              <td style="width:138px;">
-                  添付ファイル１ 8
-              </td>
-              <td style="width:138px;">
-                  添付ファイル２ 8
-              </td>
-              <td style="width:138px;">
-                  添付ファイル３ 8
-              </td>
-              <td style="width:138px;">
-                  添付ファイル４ 8
-              </td>
-              <td style="width:138px;">
-                  添付ファイル５ 8
-              </td>
-              <td style="width:210px;">
-                  保存パス 800
-              </td>
               <td style="width:30px;">
                   共有 1
-              </td>
-              <td style="width:210px;">
-                  登録者 20
               </td>
               <td style="">
                   登録時間 233
               </td>
-          </tr>
-          <tr>
-          <td>
-              <asp:TextBox ID="tbxNo" class="jq_no_ipt" runat="server" style="width:70px;background-color: #FFAA00;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxEdpNo" class="jq_edp_no_ipt" runat="server" style="width:166px;background-color: #FFAA00;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxSystemName" class="jq_system_name_ipt" runat="server" style="width:206px;background-color: #FFAA00;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxKind" class="jq_kind_ipt" runat="server" style="width:206px;background-color: #FFAA00;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxTitle" class="jq_title_ipt" runat="server" style="width:206px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxChildTitle" class="jq_child_title_ipt" runat="server" style="width:206px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxDataTxt" class="jq_data_txt_ipt" runat="server" style="width:134px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxDataHtml" class="jq_data_html_ipt" runat="server" style="width:134px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxEnclosure1" class="jq_enclosure1_ipt" runat="server" style="width:134px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxEnclosure2" class="jq_enclosure2_ipt" runat="server" style="width:134px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxEnclosure3" class="jq_enclosure3_ipt" runat="server" style="width:134px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxEnclosure4" class="jq_enclosure4_ipt" runat="server" style="width:134px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxEnclosure5" class="jq_enclosure5_ipt" runat="server" style="width:134px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxSavePath" class="jq_save_path_ipt" runat="server" style="width:206px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxShareType" class="jq_share_type_ipt" runat="server" style="width:26px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxTourokuUser" class="jq_touroku_user_ipt" runat="server" style="width:206px;"></asp:TextBox>
-          </td>
-          <td>
-              <asp:TextBox ID="tbxTourokuTime" class="jq_touroku_time_ipt" runat="server" style="width:200px;"></asp:TextBox>
-          </td>
           </tr>
       </table>
 </div>
 
 <!--明細Body部-->
 <div id="divGvw" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:294px;margin-left:0px; width:1020px; margin-top :0px; border-collapse :collapse ;">
-   <asp:GridView CssClass ="jq_ms" Width="2790px"  runat="server" ID="gvMs" EnableTheming="True" ShowHeader="False" AutoGenerateColumns="False" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
+      <table class='ms_input' style="width:1494px" cellpadding="0" cellspacing="0">
+          <tr>
+              <td style="width:170px;">
+              <asp:TextBox ID="tbxDataOwner" class="jq_data_owner_ipt" runat="server" style="width:164px;background-color: #FFAA00;"></asp:TextBox>
+          </td>
+              <td style="width:210px;">
+              <asp:TextBox ID="tbxFileName" class="jq_file_name_ipt" runat="server" style="width:204px;background-color: #FFAA00;"></asp:TextBox>
+          </td>
+              <td style="width:138px;">
+              <asp:TextBox ID="tbxEdpNo" class="jq_edp_no_ipt" runat="server" style="width:132px;background-color: #FFAA00;"></asp:TextBox>
+          </td>
+              <td style="width:210px;">
+              <asp:TextBox ID="tbxSystemName" class="jq_system_name_ipt" runat="server" style="width:204px;background-color: #FFAA00;"></asp:TextBox>
+          </td>
+              <td style="width:210px;">
+              <asp:TextBox ID="tbxEditorKind" class="jq_editor_kind_ipt" runat="server" style="width:204px;background-color: #FFAA00;"></asp:TextBox>
+          </td>
+              <td style="width:138px;">
+              <asp:TextBox ID="tbxDataTxt" class="jq_data_txt_ipt" runat="server" style="width:132px;"></asp:TextBox>
+          </td>
+              <td style="width:138px;">
+              <asp:TextBox ID="tbxDataHtml" class="jq_data_html_ipt" runat="server" style="width:132px;"></asp:TextBox>
+          </td>
+              <td style="width:30px;">
+              <asp:TextBox ID="tbxShareType" class="jq_share_type_ipt" runat="server" style="width:24px;"></asp:TextBox>
+          </td>
+              <td style="">
+              <asp:TextBox ID="tbxTourokuTime" class="jq_touroku_time_ipt" runat="server" style="width:100px;"></asp:TextBox>
+          </td>
+          </tr>
+      </table>
+   <asp:GridView CssClass ="jq_ms" Width="1494px"  runat="server" ID="gvMs" EnableTheming="True" ShowHeader="False" AutoGenerateColumns="False" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
       <Columns>
-          <asp:TemplateField><ItemTemplate ><%#Eval("no")%></ItemTemplate><ItemStyle Width="74px" HorizontalAlign="Left" CssClass="jq_no" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("edp_no")%></ItemTemplate><ItemStyle Width="170px" HorizontalAlign="Left" CssClass="jq_edp_no" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("data_owner")%></ItemTemplate><ItemStyle Width="170px" HorizontalAlign="Left" CssClass="jq_data_owner" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("file_name")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_file_name" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("edp_no")%></ItemTemplate><ItemStyle Width="138px" HorizontalAlign="Left" CssClass="jq_edp_no" /></asp:TemplateField>
           <asp:TemplateField><ItemTemplate ><%#Eval("system_name")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_system_name" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("kind")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_kind" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("title")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_title" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("child_title")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_child_title" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("editor_kind")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_editor_kind" /></asp:TemplateField>
           <asp:TemplateField><ItemTemplate ><%#Eval("data_txt")%></ItemTemplate><ItemStyle Width="138px" HorizontalAlign="Left" CssClass="jq_data_txt" /></asp:TemplateField>
           <asp:TemplateField><ItemTemplate ><%#Eval("data_html")%></ItemTemplate><ItemStyle Width="138px" HorizontalAlign="Left" CssClass="jq_data_html" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("enclosure1")%></ItemTemplate><ItemStyle Width="138px" HorizontalAlign="Left" CssClass="jq_enclosure1" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("enclosure2")%></ItemTemplate><ItemStyle Width="138px" HorizontalAlign="Left" CssClass="jq_enclosure2" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("enclosure3")%></ItemTemplate><ItemStyle Width="138px" HorizontalAlign="Left" CssClass="jq_enclosure3" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("enclosure4")%></ItemTemplate><ItemStyle Width="138px" HorizontalAlign="Left" CssClass="jq_enclosure4" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("enclosure5")%></ItemTemplate><ItemStyle Width="138px" HorizontalAlign="Left" CssClass="jq_enclosure5" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("save_path")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_save_path" /></asp:TemplateField>
           <asp:TemplateField><ItemTemplate ><%#Eval("share_type")%></ItemTemplate><ItemStyle Width="30px" HorizontalAlign="Left" CssClass="jq_share_type" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("touroku_user")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_touroku_user" /></asp:TemplateField>
           <asp:TemplateField><ItemTemplate ><%#Eval("touroku_time")%></ItemTemplate><ItemStyle  HorizontalAlign="Left" CssClass="jq_touroku_time" /></asp:TemplateField>
       </Columns>
    </asp:GridView>
 </div>
 
-        <asp:TextBox ID="hidNo" runat="server" class="jq_no_ipt" style=" visibility:hidden;"></asp:TextBox>
+        <asp:TextBox ID="hidDataOwner" runat="server" class="jq_data_owner_ipt" style=" visibility:hidden;"></asp:TextBox>
+        <asp:TextBox ID="hidFileName" runat="server" class="jq_file_name_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidEdpNo" runat="server" class="jq_edp_no_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidSystemName" runat="server" class="jq_system_name_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidKind" runat="server" class="jq_kind_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidTitle" runat="server" class="jq_title_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidChildTitle" runat="server" class="jq_child_title_ipt" style=" visibility:hidden;"></asp:TextBox>
+        <asp:TextBox ID="hidEditorKind" runat="server" class="jq_editor_kind_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidDataTxt" runat="server" class="jq_data_txt_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidDataHtml" runat="server" class="jq_data_html_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidEnclosure1" runat="server" class="jq_enclosure1_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidEnclosure2" runat="server" class="jq_enclosure2_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidEnclosure3" runat="server" class="jq_enclosure3_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidEnclosure4" runat="server" class="jq_enclosure4_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidEnclosure5" runat="server" class="jq_enclosure5_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidSavePath" runat="server" class="jq_save_path_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidShareType" runat="server" class="jq_share_type_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidTourokuUser" runat="server" class="jq_touroku_user_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidTourokuTime" runat="server" class="jq_touroku_time_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidOldRowIdx" runat="server" class="jq_hidOldRowIdx" style=" visibility:hidden;"></asp:TextBox>
     </div>

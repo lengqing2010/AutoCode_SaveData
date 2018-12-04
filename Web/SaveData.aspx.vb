@@ -24,7 +24,7 @@ Partial Class SaveData
         'EMAB障害対応情報の格納処理
         EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
         MyMethod.GetCurrentMethod.Name)
-        Return BC.SelMData("", "", "", "")
+        Return BC.SelMData("", "", "", "", "")
 
     End Function
 
