@@ -324,6 +324,24 @@
                     //alert($('#ddlType').val());
                 }, 200);
             })
+
+
+
+            /*===============================================================*/
+            /*行選択                                 
+            /*===============================================================*/
+            $(".jq_ms tr").click(function () {
+                
+                $(this).find("td").each(function () {
+                    var className = $(this).attr("class");
+                    var ipt = className + '_ipt';
+                    $("." + ipt).val($(this).text())
+
+                });
+            })
+
+
+
         });
 
         // Do Ajax function
@@ -343,8 +361,8 @@
                     , tbxEdpNo: $('#tbxEdpNo').val()
                     , tbxSystemName: $('#tbxSystemName').val()
                     , tbxEditorKind: $('#tbxEditorKind').val()
-                    , tbxDataTxt: $('#tbxDataTxt').val()
-                    , tbxDataHtml: $('#tbxDataHtml').val()
+                    , tbxDataTxt: editor.getValue()
+                    , tbxDataHtml: ''
                     , tbxShareType: $('#tbxShareType').val()
                 },
                 datatype: 'html',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.

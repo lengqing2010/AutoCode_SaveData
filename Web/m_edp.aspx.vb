@@ -144,7 +144,7 @@ Me.hidOldRowIdx.Text = ""
                 Common.ShowMsg(Me.Page, ex.Message)
                 Exit Sub
             End Try
-Me.hidOldRowIdx.Text = ""
+        Me.hidOldRowIdx.Text = ""
     End Sub
 
     ''' <summary>
@@ -159,14 +159,14 @@ Me.hidOldRowIdx.Text = ""
         EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
                                MyMethod.GetCurrentMethod.Name)
 
-            Try
-       BC.DelMEdp(hidedpNo.Text)
-        MsInit()
-            Catch ex As Exception
-                Common.ShowMsg(Me.Page, ex.Message)
-                Exit Sub
-            End Try
-Me.hidOldRowIdx.Text = ""
+        Try
+            BC.DelMEdp(hidEdpNo.Text)
+            MsInit()
+        Catch ex As Exception
+            Common.ShowMsg(Me.Page, ex.Message)
+            Exit Sub
+        End Try
+        Me.hidOldRowIdx.Text = ""
     End Sub
 
 End Class
