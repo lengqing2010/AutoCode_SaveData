@@ -22,13 +22,13 @@ Public Class MDataDA
     ''' <returns>資料情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/04  李松涛さん 新規作成 </para>
     ''' </history>
 
-    Public Function SelMData(Byval no_key AS String, _
-           Byval edpNo_key AS String, _
-           Byval systemName_key AS String, _
-           Byval kind_key AS String) As Data.DataTable
+    Public Function SelMData(ByVal no_key As String, _
+           ByVal edpNo_key As String, _
+           ByVal systemName_key As String, _
+           ByVal kind_key As String) As Data.DataTable
         'EMAB障害対応情報の格納処理
         EMAB.AddMethodEntrance(MyClass.GetType.FullName & "." & MyMethod.GetCurrentMethod.Name, _
            no_key, _
@@ -115,7 +115,7 @@ Public Class MDataDA
     ''' <returns>資料情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/04  李松涛さん 新規作成 </para>
     ''' </history>
 
     Public Function UpdMData(ByVal no_key As String, _
@@ -257,7 +257,7 @@ Public Class MDataDA
     ''' <returns>資料情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/04  李松涛さん 新規作成 </para>
     ''' </history>
 
     Public Function InsMData(ByVal no As String, _
@@ -379,7 +379,7 @@ Public Class MDataDA
     ''' <returns>資料情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/04  李松涛さん 新規作成 </para>
     ''' </history>
 
     Public Function DelMData(ByVal no_key As String, _

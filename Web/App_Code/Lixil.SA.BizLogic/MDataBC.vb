@@ -23,7 +23,7 @@ Public DA AS NEW MDataDA
     ''' <returns>資料情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/04  李松涛さん 新規作成 </para>
     ''' </history>
 
 Public Function SelMData(Byval no_key AS String, _
@@ -72,7 +72,7 @@ End Function
     ''' <returns>資料情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/04  李松涛さん 新規作成 </para>
     ''' </history>
 
 Public Function UpdMData(Byval no_key AS String, _
@@ -170,7 +170,7 @@ End Function
     ''' <returns>資料情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/04  李松涛さん 新規作成 </para>
     ''' </history>
 
 Public Function InsMData(Byval no AS String, _
@@ -243,7 +243,7 @@ End Function
     ''' <returns>資料情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/04  李松涛さん 新規作成 </para>
     ''' </history>
 
 Public Function DelMData(Byval no_key AS String, _
