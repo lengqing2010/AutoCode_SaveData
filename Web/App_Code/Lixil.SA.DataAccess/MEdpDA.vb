@@ -12,14 +12,14 @@ Imports System.Collections.Generic
 Public Class MEdpDA
 
     ''' <summary>
-    ''' aaaa
-    ''' EDP情報情報を検索する
+    ''' 
+    ''' ファイル種類情報を検索する
     ''' </summary>
-    '''<param name="edpNo_key">EDP NUMBER</param>
-    ''' <returns>EDP情報情報</returns>
+    '''<param name="edpNo_key">EDP_番号</param>
+    ''' <returns>ファイル種類情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/10  李松涛さん 新規作成 </para>
     ''' </history>
 
     Public Function SelMEdp(Byval edpNo_key AS String) As Data.DataTable
@@ -27,18 +27,19 @@ Public Class MEdpDA
         EMAB.AddMethodEntrance(MyClass.GetType.FullName & "." & MyMethod.GetCurrentMethod.Name , _
            edpNo_key)
         'SQLコメント
-        '--**テーブル：EDP情報 : m_edp
+        '--**テーブル：ファイル種類 : m_edp
         Dim sb As New StringBuilder
-    'SQL文
+        'SQL文
         sb.AppendLine("SELECT")
-    sb.AppendLine("edp_no")                                                        'EDP NUMBER
-    sb.AppendLine(", edp_name")                                                    'EDP_名
+        sb.AppendLine("edp_no")                                                    'EDP_番号
+        sb.AppendLine(", edp_name")                                                'EDP_名
+        sb.AppendLine(", edp_staus")                                               'STAUS
 
         sb.AppendLine("FROM m_edp")
         sb.AppendLine("WHERE 1=1")
             If edpNo_key<>"" Then
-    sb.AppendLine("AND edp_no=@edp_no_key")   'EDP NUMBER
-End If
+            sb.AppendLine("AND edp_no=@edp_no_key")   'EDP_番号
+        End If
 
     'バラメタ格納
     Dim paramList As New List(Of SqlParameter)
@@ -52,40 +53,44 @@ End If
 End Function
 
     ''' <summary>
-    ''' aaaa
-    ''' EDP情報情報を更新する
+    ''' 
+    ''' ファイル種類情報を更新する
     ''' </summary>
-    '''<param name="edpNo_key">EDP NUMBER</param>
-'''<param name="edpNo">EDP NUMBER</param>
+    '''<param name="edpNo_key">EDP_番号</param>
+'''<param name="edpNo">EDP_番号</param>
 '''<param name="edpName">EDP_名</param>
-    ''' <returns>EDP情報情報</returns>
+'''<param name="edpStaus">STAUS</param>
+    ''' <returns>ファイル種類情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/10  李松涛さん 新規作成 </para>
     ''' </history>
 
 Public Function UpdMEdp(Byval edpNo_key AS String, _
            Byval edpNo AS String, _
-           Byval edpName AS String) As Boolean
+           Byval edpName AS String, _
+           Byval edpStaus AS String) As Boolean
     'EMAB障害対応情報の格納処理
     EMAB.AddMethodEntrance(MyClass.GetType.FullName & "." & MyMethod.GetCurrentMethod.Name , _
            edpNo_key, _
            edpNo, _
-           edpName)
+           edpName, _
+           edpStaus)
     'SQLコメント
-    '--**テーブル：EDP情報 : m_edp
+    '--**テーブル：ファイル種類 : m_edp
     Dim sb As New StringBuilder
-    'SQL文
+        'SQL文
     sb.AppendLine("UPDATE m_edp")
     sb.AppendLine("SET")
-    sb.AppendLine("edp_no=@edp_no")                                                'EDP NUMBER
+    sb.AppendLine("edp_no=@edp_no")                                                'EDP_番号
     sb.AppendLine(", edp_name=@edp_name")   'EDP_名
+    sb.AppendLine(", edp_staus=@edp_staus")   'STAUS
 
     sb.AppendLine("FROM m_edp")
     sb.AppendLine("WHERE 1=1")
         If edpNo_key<>"" Then
-    sb.AppendLine("AND edp_no=@edp_no_key")   'EDP NUMBER
-End If
+            sb.AppendLine("AND edp_no=@edp_no_key")   'EDP_番号
+        End If
 
     'バラメタ格納
     Dim paramList As New List(Of SqlParameter)
@@ -93,6 +98,7 @@ End If
 
     paramList.Add(MakeParam("@edp_no", SqlDbType.nvarchar, 10, edpNo))
     paramList.Add(MakeParam("@edp_name", SqlDbType.nvarchar, 200, edpName))
+    paramList.Add(MakeParam("@edp_staus", SqlDbType.Char, 1, edpStaus))
 
 
     SQLHelper.ExecuteNonQuery(DataAccessManager.Connection, CommandType.Text, sb.ToString(), paramList.ToArray) 
@@ -102,42 +108,48 @@ End If
 End Function
 
     ''' <summary>
-    ''' aaaa
-    ''' EDP情報情報を登録する
+    ''' 
+    ''' ファイル種類情報を登録する
     ''' </summary>
-    '''<param name="edpNo">EDP NUMBER</param>
+    '''<param name="edpNo">EDP_番号</param>
 '''<param name="edpName">EDP_名</param>
-    ''' <returns>EDP情報情報</returns>
+'''<param name="edpStaus">STAUS</param>
+    ''' <returns>ファイル種類情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/10  李松涛さん 新規作成 </para>
     ''' </history>
 
 Public Function InsMEdp(Byval edpNo AS String, _
-           Byval edpName AS String) As Boolean
+           Byval edpName AS String, _
+           Byval edpStaus AS String) As Boolean
     'EMAB障害対応情報の格納処理
     EMAB.AddMethodEntrance(MyClass.GetType.FullName & "." & MyMethod.GetCurrentMethod.Name , _
            edpNo, _
-           edpName)
+           edpName, _
+           edpStaus)
     'SQLコメント
-    '--**テーブル：EDP情報 : m_edp
+    '--**テーブル：ファイル種類 : m_edp
     Dim sb As New StringBuilder
-    'SQL文
+        'SQL文
     sb.AppendLine("INSERT INTO  m_edp")
     sb.AppendLine("(")
-    sb.AppendLine("edp_no")                                                        'EDP NUMBER
-    sb.AppendLine(", edp_name")                                                    'EDP_名
+        sb.AppendLine("edp_no")                                                    'EDP_番号
+        sb.AppendLine(", edp_name")                                                'EDP_名
+        sb.AppendLine(", edp_staus")                                               'STAUS
 
     sb.AppendLine(")")
     sb.AppendLine("VALUES(")
-    sb.AppendLine("@edp_no")                                                       'EDP NUMBER
+    sb.AppendLine("@edp_no")                                                       'EDP_番号
     sb.AppendLine(", @edp_name")                                                   'EDP_名
+    sb.AppendLine(", @edp_staus")                                                  'STAUS
 
     sb.AppendLine(")")
     'バラメタ格納
     Dim paramList As New List(Of SqlParameter)
     paramList.Add(MakeParam("@edp_no", SqlDbType.nvarchar, 10, edpNo))
     paramList.Add(MakeParam("@edp_name", SqlDbType.nvarchar, 200, edpName))
+    paramList.Add(MakeParam("@edp_staus", SqlDbType.Char, 1, edpStaus))
 
 
     SQLHelper.ExecuteNonQuery(DataAccessManager.Connection, CommandType.Text, sb.ToString(), paramList.ToArray) 
@@ -147,14 +159,14 @@ Public Function InsMEdp(Byval edpNo AS String, _
 End Function
 
     ''' <summary>
-    ''' aaaa
-    ''' EDP情報情報を削除する
+    ''' 
+    ''' ファイル種類情報を削除する
     ''' </summary>
-    '''<param name="edpNo_key">EDP NUMBER</param>
-    ''' <returns>EDP情報情報</returns>
+    '''<param name="edpNo_key">EDP_番号</param>
+    ''' <returns>ファイル種類情報</returns>
     ''' <remarks></remarks>
     ''' <history>
-    ''' <para>2018/12/03  李松涛さん 新規作成 </para>
+    ''' <para>2018/12/10  李松涛さん 新規作成 </para>
     ''' </history>
 
 Public Function DelMEdp(Byval edpNo_key AS String) As Boolean
@@ -162,14 +174,14 @@ Public Function DelMEdp(Byval edpNo_key AS String) As Boolean
     EMAB.AddMethodEntrance(MyClass.GetType.FullName & "." & MyMethod.GetCurrentMethod.Name , _
            edpNo_key)
     'SQLコメント
-    '--**テーブル：EDP情報 : m_edp
+    '--**テーブル：ファイル種類 : m_edp
     Dim sb As New StringBuilder
-    'SQL文
+        'SQL文
     sb.AppendLine("DELETE FROM m_edp")
     sb.AppendLine("WHERE 1=1")
         If edpNo_key<>"" Then
-    sb.AppendLine("AND edp_no=@edp_no_key")   'EDP NUMBER
-End If
+            sb.AppendLine("AND edp_no=@edp_no_key")   'EDP_番号
+        End If
 
     'バラメタ格納
     Dim paramList As New List(Of SqlParameter)

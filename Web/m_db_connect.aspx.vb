@@ -3,10 +3,10 @@ Imports System.Text
 Imports System.IO
 Imports EMAB = Itis.ApplicationBlocks.ExceptionManagement.UnTrappedExceptionManager
 Imports MyMethod = System.Reflection.MethodBase
-Partial Class m_edp
+Partial Class m_db_connect
     Inherits System.Web.UI.Page
 
-   Public BC AS NEW MEdpBC
+   Public BC AS NEW MDbConnectBC
     ''' <summary>
     ''' PAGE LOAD
     ''' </summary>
@@ -37,15 +37,15 @@ Partial Class m_edp
       'EMAB障害対応情報の格納処理
        EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
        MyMethod.GetCurrentMethod.Name)
-       Me.tbxEdpNo.Attributes.Item("itType") = "nvarchar"
-       Me.tbxEdpNo.Attributes.Item("itLength") = "10"
-       Me.tbxEdpNo.Attributes.Item("itName") = "EDP_番号"
-       Me.tbxEdpName.Attributes.Item("itType") = "nvarchar"
-       Me.tbxEdpName.Attributes.Item("itLength") = "200"
-       Me.tbxEdpName.Attributes.Item("itName") = "EDP_名"
-       Me.tbxEdpStaus.Attributes.Item("itType") = "char"
-       Me.tbxEdpStaus.Attributes.Item("itLength") = "1"
-       Me.tbxEdpStaus.Attributes.Item("itName") = "STAUS"
+       Me.tbxConnectNo.Attributes.Item("itType") = "int"
+       Me.tbxConnectNo.Attributes.Item("itLength") = "4"
+       Me.tbxConnectNo.Attributes.Item("itName") = "DB接続No"
+       Me.tbxConnectName.Attributes.Item("itType") = "nvarchar"
+       Me.tbxConnectName.Attributes.Item("itLength") = "200"
+       Me.tbxConnectName.Attributes.Item("itName") = "－ＣＯＮＮＥＣＴ－ＮＡＭＥ"
+       Me.tbxConnectStr.Attributes.Item("itType") = "nvarchar"
+       Me.tbxConnectStr.Attributes.Item("itLength") = "200"
+       Me.tbxConnectStr.Attributes.Item("itName") = "－ＣＯＮＮＥＣＴ－ＳＴＲ"
 
     End Sub
 
@@ -87,7 +87,7 @@ Partial Class m_edp
       'EMAB障害対応情報の格納処理
        EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
        MyMethod.GetCurrentMethod.Name)
-       Return BC.SelMEdp(tbxEdpNo_key.Text)
+       Return BC.SelMDbConnect(tbxConnectNo_key.Text)
     End Function
 
     ''' <summary>
@@ -100,7 +100,7 @@ Partial Class m_edp
       'EMAB障害対応情報の格納処理
        EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
        MyMethod.GetCurrentMethod.Name)
-       Return BC.SelMEdp(tbxEdpNo.Text).Rows.Count > 0
+       Return BC.SelMDbConnect(tbxConnectNo.Text).Rows.Count > 0
     End Function
 
     ''' <summary>
@@ -116,7 +116,7 @@ Partial Class m_edp
                                MyMethod.GetCurrentMethod.Name)
 
             Try
-       BC.UpdMEdp(hidedpNo.Text,tbxedpNo.Text, tbxedpName.Text, tbxedpStaus.Text)
+       BC.UpdMDbConnect(Convert.ToInt32(hidconnectNo.Text),Convert.ToInt32(tbxconnectNo.Text), tbxconnectName.Text, tbxconnectStr.Text)
         MsInit()
             Catch ex As Exception
                 Common.ShowMsg(Me.Page, ex.Message)
@@ -141,7 +141,7 @@ Me.hidOldRowIdx.Text = ""
                 Exit Sub
             End If
             Try
-            BC.InsMEdp(tbxedpNo.Text, tbxedpName.Text, tbxedpStaus.Text)
+            BC.InsMDbConnect(tbxconnectNo.Text, tbxconnectName.Text, tbxconnectStr.Text)
                 MsInit()
             Catch ex As Exception
                 Common.ShowMsg(Me.Page, ex.Message)
@@ -163,7 +163,7 @@ Me.hidOldRowIdx.Text = ""
                                MyMethod.GetCurrentMethod.Name)
 
             Try
-       BC.DelMEdp(hidedpNo.Text)
+       BC.DelMDbConnect(hidconnectNo.Text)
         MsInit()
             Catch ex As Exception
                 Common.ShowMsg(Me.Page, ex.Message)

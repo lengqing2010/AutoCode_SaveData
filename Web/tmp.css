@@ -162,12 +162,27 @@ td {
     font-size: .85em;
     text-shadow: 0px 1px 1px rgba(0,0,0,0.4);
 }
+
+.jyouken_panel th {
+    border: black 1px solid;
+    background-color:#99ccff;
+    height:30px;
+    text-align:left;
+    border:none;
+}
+
 .jyouken_panel td input{
     font-size: 10px;
     margin:0 auto 0 auto;
     padding:2px;
-    height:16px;
-    border-width:2px;
+    height:14px;
+  
+    border-bottom: solid 1px #000;
+  
+}
+.jyouken_panel td{
+     padding-left:4px;
+     border:none;
 }
 .ms_input {
     margin-top:-1px;
@@ -180,7 +195,7 @@ td {
     padding:1px;
 }
 .ms_input input{
-    /*border: black 2px inset ;*/
+    border: black 2px inset ;
     font-size: 11px;
     margin:0 auto 0 auto;
     height:16px;
