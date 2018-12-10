@@ -89,6 +89,19 @@ Partial Class m_data_job
                 gvMs.RenderControl(htw)
                 Response.Write(htw.InnerWriter.ToString)
                 Response.End()
+
+            ElseIf Request.Form("ajaxActionType") = "select_itibu" Then
+                Response.ClearContent()
+                Dim dt As DataTable = BC.SelMDataJob("", "", tbxSystemName_key, "", tbxEdpNo_key, "", "", "")
+                Me.gvMs.DataSource = dt
+                gvMs.DataBind()
+                Dim sb As New System.Text.StringBuilder()
+                Dim sw As New System.IO.StringWriter(sb)
+                Dim htw As New HtmlTextWriter(sw)
+                gvMs.RenderControl(htw)
+                Response.Write(htw.InnerWriter.ToString)
+                Response.End()
+
             Else
                 Response.ClearContent()
                 Dim dt As DataTable = BC.SelMDataJob("", "", tbxSystemName_key, tbxKinouName_key, tbxEdpNo_key, "", "", "")
@@ -100,6 +113,7 @@ Partial Class m_data_job
                 gvMs.RenderControl(htw)
                 Response.Write(htw.InnerWriter.ToString)
                 Response.End()
+
             End If
 
 

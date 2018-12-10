@@ -24,7 +24,11 @@
 <body>
 <form id="form1" runat="server">
     <div>
-        <div class='title_div'>仕事データ</div>
+        <div class='title_div'>仕事データ
+
+            <input type ="button" id="jianlue" value="簡略" style="height:40px;" onclick="" />
+            <input type ="button" id="syousai" value="詳細" style="height:40px;" onclick="" />
+        </div>
         <asp:Label ID="lblMsg" runat="server" ForeColor="Red"></asp:Label>
                
         <hr />
@@ -47,7 +51,10 @@
             <td> キー</td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
-            <td> <asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="jq_sel" Width="80" OnClientClick="ajax_select();return false;" /></td>
+            <td> 
+                <asp:Button ID="btnSelect" runat="server" Text="検索全部条件" CssClass="jq_sel" Width="80" OnClientClick="ajax_select();return false;" />
+                
+            </td>
             </tr>
             <tr>
             <td>資料分類 : &nbsp;</td>
@@ -55,11 +62,11 @@
               <asp:TextBox ID="tbxSiryouKind_key" class="jq_siryou_kind_key" runat="server" style="width:20px;background-color: #FFAA00;"></asp:TextBox>
             </td>
             <td> 0:案件、1:技術　</td>
-            <td> &nbsp;</td>
+            <td></td>
             <td> 
 
         
-                &nbsp;</td>
+                </td>
             <td> 
 
                 &nbsp;</td>
@@ -74,7 +81,7 @@
             <td> <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_system_name.aspx')" /></td>
             <td> 
                 &nbsp;</td>
-            <td> &nbsp;</td>
+            <td> <asp:Button ID="btnSelectSome" runat="server" Text="検索一部条件" CssClass="jq_sel" Width="80" OnClientClick="ajax_select_itibu();return false;" /></td>
             </tr>
 
             <tr>
@@ -312,22 +319,14 @@
             <td> &nbsp;</td>
             </tr>           
         </table>
-        <br /> <hr />
 
 <!--Button部-->
 
         
-        <asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="jq_ins" Width="80" OnClientClick="ajax_insert();return false;" />
-
-        
-        <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="jq_upd" Width="80" OnClientClick="ajax_update();return false;" /> 
-
-        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="jq_del" Width="80" OnClientClick="ajax_delete();return false;" />
-
- <br /> <hr />
 
 <!--明細Title部-->
 <div id="divGvwTitle" class='jq_title_div' runat ="server" style="overflow:hidden ;margin-left:0px; width:1004px; margin-top :0px; border-collapse :collapse ;">
+    <hr />
       <table class='ms_title' style="width:1000px" cellpadding="0" cellspacing="0">
           <tr>
               <td style="width:44px;">
@@ -378,6 +377,14 @@
       </Columns>
    </asp:GridView>
 </div>
+        <hr />
+        <asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="jq_ins" Width="80" OnClientClick="ajax_insert();return false;" />
+        <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="jq_upd" Width="80" OnClientClick="ajax_update();return false;" /> 
+        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="jq_del" Width="80" OnClientClick="ajax_delete();return false;" />
+
+
+        <asp:Button ID="btnRunSQLSELECT" runat="server" Text="SQL SELECT" CssClass="" Width="180" OnClientClick="return false;" />
+        <asp:Button ID="btnRunSQLRUN" runat="server" Text="SQL RUN" CssClass="" Width="180" OnClientClick="return false;" />
  <div style="height:1200px;" id="editorDiv"></div>
         <asp:TextBox ID="hidIdx" runat="server" class="jq_idx_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidSiryouKind" runat="server" class="jq_siryou_kind_ipt" style=" visibility:hidden;"></asp:TextBox>

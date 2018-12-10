@@ -159,25 +159,63 @@ function AjaxPostTxt(ajaxActionType) {
 // 更新
 function ajax_update(){
     AjaxPostUpdate('update');
+    alert('完了');
+    $(".jq_ms").find("tr").each(function () {
+        if ($(this).find("td")[0].innerText == $("#tbxIdx_key").val()) {
+            $(this).click();
+            return false;
+        }
+    });
 }
 // 削除
 function ajax_delete(){
     AjaxPost('delete');
+    alert('完了');
+    $(".jq_ms tr").last().click();
 }
 // 登録
 function ajax_insert(){
     AjaxPost('insert');
+    //setTimeout(function () {
+    //    $(".jq_ms").find("tr").last().click();
+
+    //}, 10);
+    //alert();
+    //$(".jq_ms").find("tr").each(function () {
+
+    //    $(this).click();
+    //});
+    alert('完了');
+    $(".jq_ms tr").last().click();
+
+    //$(".jq_ms").find("tr").each(function () {
+
+
+
+    //    if ($(this).find("td")[0].innerText == $("#tbxIdx_key").val()) {
+    //        $(this).click();
+    //        return false;
+    //    }
+    //});
 }
 // 検索
 function ajax_select(){
     AjaxPost('select');
 }
+// 検索
+function ajax_select_itibu() {
+    AjaxPost('select_itibu');
+}
+
+
 function ajax_txt() {
     AjaxPostTxt('txt');
 }
 
 //システム名
 $(document).ready(function () {
+
+
     $("#tbxSystemName_key,#tbxSystemName").focus(function () {
         AjaxList('SystemName', 'm_data_job_ajax.aspx', '#tbxSystemName_key_list');
     });
@@ -193,7 +231,22 @@ $(document).ready(function () {
         AjaxList('DBconnect', 'm_data_job_ajax.aspx', '#tbxConnectNo_key_list');
     });
 
+    $("#jianlue").click(function () {
+        $('.jyouken_panel').hide(500);
+        $('#divGvwTitle').hide(500);
+        $('#divGvw').hide(500);
+        $('#lblMsg').text($('#tbxFileName').val());
+    });
+
+    $("#syousai").click(function () {
+        $('.jyouken_panel').show(500);
+        $('#divGvwTitle').show(500);
+        $('#divGvw').show(500);
+        $('#lblMsg').text($('#tbxFileName').val());
+    });
+
     MsInit();
+
 });
 
 
@@ -236,6 +289,8 @@ function AjaxList(ajaxActionType, ajaxUrl,datalistId) {
 
 function MsInit() {
 
+
+
     /*===============================================================*/
     /*行選択                                 
     /*===============================================================*/
@@ -265,6 +320,7 @@ function MsInit() {
         $('#tbxConnectNo_key').val($(this).find("td")[6].innerText);
         $('#tbxMenuNo_key').val($(this).find("td")[7].innerText);
         ajax_txt();
+        $('#lblMsg').text($('#tbxFileName').val());
     })
 
     /*===============================================================*/
@@ -292,7 +348,14 @@ function MsInit() {
         }
     });
 
+//前回行選択する
+    //$(".jq_ms").find("tr").each(function () {
 
+    //    if ($(this).find("td")[0].innerText == $("#tbxIdx_key").val()) {
+    //        $(this).click();
+    //        return false;
+    //    }
+    //});
     ///*===============================================================*/
     ///*行選択                                 
     ///*===============================================================*/

@@ -673,6 +673,7 @@ $("#divKM").hide();
 var SelectRow;
 
 $(document).ready(function () {
+
     //Page post 後、行選択
     if ($(".jq_hidOldRowIdx").val() != '') {
         var oldIdx = parseInt($(".jq_hidOldRowIdx").val(), 10);
