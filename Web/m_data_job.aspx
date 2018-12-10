@@ -48,7 +48,7 @@
             <td>
               <asp:TextBox ID="tbxIdx_key" class="jq_idx_key" runat="server" style="width:64px;background-color: #FFAA00;"></asp:TextBox>
             </td>
-            <td> キー</td>
+            <td> </td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             <td> 
@@ -59,9 +59,9 @@
             <tr>
             <td>資料分類 : &nbsp;</td>
             <td>
-              <asp:TextBox ID="tbxSiryouKind_key" class="jq_siryou_kind_key" runat="server" style="width:20px;background-color: #FFAA00;"></asp:TextBox>
+              <asp:TextBox ID="tbxSiryouKind_key" class="jq_siryou_kind_key" runat="server" style="width:20px;background-color: #FFAA00;"></asp:TextBox>0:案件、1:技術
             </td>
-            <td> 0:案件、1:技術　</td>
+            <td> 　</td>
             <td></td>
             <td> 
 
@@ -75,9 +75,9 @@
             <td>システム名 : &nbsp;</td>
             <td>
               <asp:TextBox ID="tbxSystemName_key" class="jq_system_name_key" runat="server" style="width:200px;background-color: #FFAA00;" list="tbxSystemName_key_list"></asp:TextBox>
-              <datalist id="tbxSystemName_key_list"></datalist>
+              <datalist id="tbxSystemName_key_list"></datalist> VAPM、SA
             </td>
-            <td> VAPM、SA</td>
+            <td> </td>
             <td> <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_system_name.aspx')" /></td>
             <td> 
                 &nbsp;</td>
@@ -88,9 +88,9 @@
             <td>EDP番号 : &nbsp;</td>
             <td>
               <asp:TextBox ID="tbxEdpNo_key" class="jq_edp_no_key" runat="server" style="width:128px;background-color: #FFAA00;" list="tbxEdpNo_key_list"></asp:TextBox>
-              <datalist id="tbxEdpNo_key_list"></datalist>
+              <datalist id="tbxEdpNo_key_list"></datalist> 自分：Zxxxxxx Company：Rxxxxx
             </td>
-            <td> 自分：Zxxxxxx Company：Rxxxxx</td>
+            <td></td>
             <td> <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_edp.aspx')" /></td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
@@ -101,7 +101,7 @@
             <td>
               <asp:TextBox ID="tbxKinouName_key" class="jq_kinou_name_key" runat="server" style="width:200px;background-color: #FFAA00;"></asp:TextBox>
             </td>
-            <td> 機能名</td>
+            <td> </td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
@@ -114,7 +114,7 @@
               <asp:TextBox ID="tbxConnectNo_key" class="jq_connect_no_key" runat="server" style="width:600px;background-color: #FFAA00;" list="tbxConnectNo_key_list"></asp:TextBox>
               <datalist id="tbxConnectNo_key_list"></datalist>
             </td>
-            <td> DB接続</td>
+            <td> </td>
             <td> <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_db_connect.aspx')" /></td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
@@ -122,9 +122,9 @@
             <tr>
             <td>メニューNo : &nbsp;</td>
             <td>
-              <asp:TextBox ID="tbxMenuNo_key" class="jq_menu_no_key" runat="server" style="width:200px;background-color: #FFAA00;"></asp:TextBox>
+              <asp:TextBox ID="tbxMenuNo_key" class="jq_menu_no_key" runat="server" style="width:200px;background-color: #FFAA00;"></asp:TextBox> メニューNo（空白可）
             </td>
-            <td> メニューNo（空白可）</td>
+            <td> </td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
@@ -313,7 +313,7 @@
         </asp:DropDownList>  
              <%-- <asp:TextBox ID="tbxEditorKind_key" class="jq_editor_kind_key" runat="server" style="width:200px;background-color: #FFAA00;"></asp:TextBox>--%>
             </td>
-            <td> Editorの TXT、VBS</td>
+            <td> </td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
@@ -383,9 +383,9 @@
         <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="jq_del" Width="80" OnClientClick="ajax_delete();return false;" />
 
 
-        <asp:Button ID="btnRunSQLSELECT" runat="server" Text="SQL SELECT" CssClass="" Width="180" OnClientClick="return false;" />
+        <asp:Button ID="btnRunSQLSELECT" runat="server" Text="SQL SELECT" CssClass="" Width="180" OnClientClick="AjaxSQL('sql_select');return false;" />
         <asp:Button ID="btnRunSQLRUN" runat="server" Text="SQL RUN" CssClass="" Width="180" OnClientClick="return false;" />
- <div style="height:1200px;" id="editorDiv"></div>
+
         <asp:TextBox ID="hidIdx" runat="server" class="jq_idx_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidSiryouKind" runat="server" class="jq_siryou_kind_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidSystemName" runat="server" class="jq_system_name_ipt" style=" visibility:hidden;"></asp:TextBox>
@@ -402,10 +402,32 @@
         <asp:TextBox ID="hidTourokuTime" runat="server" class="jq_touroku_time_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidOldRowIdx" runat="server" class="jq_hidOldRowIdx" style=" visibility:hidden;"></asp:TextBox>
     </div>
+    <div style="height:600px;width:1700px; ">
+        <div style="height:400px;width:800px;float:left;" id="editorDiv"></div>
+        <div style="height:400px;width:800px; " id="editorDiv2"></div>
+    </div>
+
+
+        
+        <div id="divSqlDiv" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:180px;margin-left:0px; width:100%; margin-top :0px; border-collapse :collapse ; background-color:#eee;">
+        <asp:GridView CssClass ="jq_ms" Width="1000px"  runat="server" ID="gvSql" EnableTheming="True" ShowHeader="True" AutoGenerateColumns="True" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
+        <Columns>
+        </Columns>
+        </asp:GridView>
+        </div>
+
+
+<%--<div id="div1" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:580px;margin-left:0px; width:1020px; margin-top :0px; border-collapse :collapse ; background-color:#eee;">
+    <asp:GridView CssClass ="jq_ms" Width="1000px"  runat="server" ID="GridView1" EnableTheming="True" ShowHeader="True" AutoGenerateColumns="True" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
+    <Columns>
+    </Columns>
+    </asp:GridView>
+</div>--%>
 
     <script>
 
         var editor;
+        var editor2;
 
         $(document).ready(function () {
             editor = ace.edit("editorDiv");
@@ -428,6 +450,28 @@
                 enableLiveAutocompletion: true
             });
 
+
+            editor2 = ace.edit("editorDiv2");
+            //设置编辑器样式，对应theme-*.js文件
+            editor2.setTheme("ace/theme/twilight");
+            //设置代码语言，对应mode-*.js文件
+            editor2.session.setMode("ace/mode/javascript");
+            //设置打印线是否显示
+            editor2.setShowPrintMargin(false);
+            //设置是否只读
+            editor2.setReadOnly(false);
+
+            editor2.setFontSize(16);
+
+            //以下部分是设置输入代码提示的，如果不需要可以不用引用ext-language_tools.js
+            ace.require("ace/ext/language_tools");
+            editor2.setOptions({
+                enableBasicAutocompletion: true,
+                enableSnippets: true,
+                enableLiveAutocompletion: true
+            });
+            editor2.session.setMode('ace/mode/' + 'sqlserver');
+            
 
             $("#ddlType").change(function () {
                 setTimeout(function () {

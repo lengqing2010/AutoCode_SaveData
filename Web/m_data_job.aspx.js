@@ -23,7 +23,7 @@ function AjaxPost(ajaxActionType){
             , tbxMenuNo: $('#tbxMenuNo_key').val()
             , tbxFileName:$('#tbxFileName').val()
             , tbxDataTxt: editor.getValue()
-            , tbxDataHtml:''
+            , tbxDataHtml: editor2.getValue()
             , tbxShareType: $('#ddlShareType').val()
             , tbxDataOwner:''
             , tbxTourokuTime:''
@@ -75,7 +75,7 @@ function AjaxPostUpdate(ajaxActionType) {
             , tbxMenuNo: $('#tbxMenuNo_key').val()
             , tbxFileName: $('#tbxFileName').val()
             , tbxDataTxt: editor.getValue()
-            , tbxDataHtml: ''
+            , tbxDataHtml: editor2.getValue()
             , tbxShareType: $('#ddlShareType').val()
             , tbxDataOwner: ''
             , tbxTourokuTime: ''
@@ -129,7 +129,7 @@ function AjaxPostTxt(ajaxActionType) {
             , tbxMenuNo: $('#tbxMenuNo_key').val()
             , tbxFileName: $('#tbxFileName').val()
             , tbxDataTxt: editor.getValue()
-            , tbxDataHtml: ''
+            , tbxDataHtml: editor2.getValue()
             , tbxShareType: $('#ddlShareType').val()
             , tbxDataOwner: ''
             , tbxTourokuTime: ''
@@ -156,6 +156,93 @@ function AjaxPostTxt(ajaxActionType) {
         }
     });
 }
+
+
+// Do Ajax function
+function AjaxPostTxt2(ajaxActionType) {
+    $.ajax({
+        type: 'POST',
+        url: 'm_data_job.aspx',
+        data: {
+            ajaxActionType: ajaxActionType
+            , tbxIdx_key: $('#hidIdx').val()
+            , tbxSiryouKind_key: $('#hidSiryouKind').val()
+            , tbxSystemName_key: $('#hidSystemName').val()
+            , tbxKinouName_key: $('#hidKinouName').val()
+            , tbxEdpNo_key: $('#hidEdpNo').val().split(":")[0]
+            , tbxEditorKind_key: $('#hidEditorKind').val()
+            , tbxConnectNo_key: $('#hidConnectNo').val().split(":")[0]
+            , tbxMenuNo_key: $('#hidMenuNo').val()
+            , tbxIdx: $('#tbxIdx_key').val()
+            , tbxSiryouKind: $('#tbxSiryouKind_key').val()
+            , tbxSystemName: $('#tbxSystemName_key').val()
+            , tbxKinouName: $('#tbxKinouName_key').val()
+            , tbxEdpNo: $('#tbxEdpNo_key').val().split(":")[0]
+            , tbxEditorKind: $('#ddlType').val()
+            , tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0]
+            , tbxMenuNo: $('#tbxMenuNo_key').val()
+            , tbxFileName: $('#tbxFileName').val()
+            , tbxDataTxt: editor.getValue()
+            , tbxDataHtml: editor2.getValue()
+            , tbxShareType: $('#ddlShareType').val()
+            , tbxDataOwner: ''
+            , tbxTourokuTime: ''
+        },
+        datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
+        beforeSend: function () {
+        },
+        //when success
+        success: function (data) {
+            //alert(data);
+            //document.getElementById("divGvw").innerHTML = data;
+            //MsInit();
+            editor2.setValue(data);
+        },
+        //when complete
+        complete: function (XMLHttpRequest, textStatus) {
+            //XMLHttpRequest.responseText
+            //alert(textStatus);
+            //alert(textStatus);
+        },
+        //when error
+        error: function () {
+            alert('Error');
+        }
+    });
+}
+
+
+
+// Do Ajax GetRowSelectInfo
+function GetRowSelectInfo(ajaxActionType) {
+    var arr;
+    $.ajax({
+        type: 'POST',
+        url: 'm_data_job.aspx',
+        data: {
+            ajaxActionType: ajaxActionType
+            , tbxIdx_key: $('#hidIdx').val()
+        },
+        datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
+        beforeSend: function () {
+        },
+        //when success
+        success: function (data) {
+            arr = data.split(",");
+            $('#ddlShareType').val(arr[0]);
+            $('#tbxDataOwner').val(arr[1]);
+        },
+        //when complete
+        complete: function (XMLHttpRequest, textStatus) {
+        },
+        //when error
+        error: function () {
+            alert('Error');
+        }
+    });
+}
+
+
 // 更新
 function ajax_update(){
     AjaxPostUpdate('update');
@@ -210,6 +297,7 @@ function ajax_select_itibu() {
 
 function ajax_txt() {
     AjaxPostTxt('txt');
+    AjaxPostTxt2('txt2');
 }
 
 //システム名
@@ -307,7 +395,6 @@ function MsInit() {
             var className = $(this).attr("class");
             var ipt = className + '_ipt';
             $("." + ipt).val($(this).text())
-
         });
 
 
@@ -320,6 +407,7 @@ function MsInit() {
         $('#tbxConnectNo_key').val($(this).find("td")[6].innerText);
         $('#tbxMenuNo_key').val($(this).find("td")[7].innerText);
         ajax_txt();
+        GetRowSelectInfo('RowInfo');
         $('#lblMsg').text($('#tbxFileName').val());
     })
 
@@ -377,3 +465,41 @@ function MsInit() {
 
 
 }
+
+
+
+
+// Do Ajax function
+function AjaxSQL(ajaxActionType) {
+    $.ajax({
+        type: 'POST',
+        url: 'm_data_job.aspx',
+        data: {
+            ajaxActionType: ajaxActionType
+            , tbxConnectNo_key: $('#hidConnectNo').val().split(":")[0]
+            , sql:editor2.getValue()
+        },
+        datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
+        beforeSend: function () {
+        },
+        //when success
+        success: function (data) {
+//alert(data);
+            document.getElementById("divSqlDiv").innerHTML = data;
+            //MsInit();
+            //editor.setValue(data);
+        },
+        //when complete
+        complete: function (XMLHttpRequest, textStatus) {
+            //XMLHttpRequest.responseText
+            //alert(textStatus);
+            //alert(textStatus);
+        },
+        //when error
+        error: function () {
+            alert('Error');
+        }
+    });
+}
+
+

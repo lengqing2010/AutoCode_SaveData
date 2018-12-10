@@ -12,6 +12,19 @@ Imports System.Collections.Generic
 Public Class MDataJobDA
 
 
+    Public Function SelSql(ByVal conn As String, ByVal sql As String) As Data.DataTable
+        'EMAB障害対応情報の格納処理
+     
+
+        Dim dsInfo As New Data.DataSet
+        FillDataset(conn, CommandType.Text, sql, dsInfo, "m_system_name")
+
+        Return dsInfo.Tables("m_system_name")
+
+    End Function
+
+
+
     ''' <summary>
     ''' 
     ''' システム名Info情報を検索する
@@ -380,8 +393,8 @@ Public Class MDataJobDA
         paramList.Add(MakeParam("@connect_no", SqlDbType.Int, 4, GetIntValue(connectNo)))
         paramList.Add(MakeParam("@menu_no", SqlDbType.NVarChar, 20, menuNo))
         paramList.Add(MakeParam("@file_name", SqlDbType.NVarChar, 100, fileName))
-        paramList.Add(MakeParam("@data_txt", SqlDbType.NText, 8, dataTxt))
-        paramList.Add(MakeParam("@data_html", SqlDbType.NText, 8, dataHtml))
+        paramList.Add(MakeParam("@data_txt", SqlDbType.NText, 0, dataTxt))
+        paramList.Add(MakeParam("@data_html", SqlDbType.NText, 0, dataHtml))
         paramList.Add(MakeParam("@share_type", SqlDbType.NVarChar, 1, shareType))
         paramList.Add(MakeParam("@data_owner", SqlDbType.NVarChar, 10, dataOwner))
         paramList.Add(MakeParam("@touroku_time", SqlDbType.Date, 24, IIf(tourokuTime = "", DBNull.Value, tourokuTime)))
@@ -497,8 +510,8 @@ Public Class MDataJobDA
         paramList.Add(MakeParam("@connect_no", SqlDbType.Int, 4, GetIntValue(connectNo)))
         paramList.Add(MakeParam("@menu_no", SqlDbType.NVarChar, 20, menuNo))
         paramList.Add(MakeParam("@file_name", SqlDbType.NVarChar, 100, fileName))
-        paramList.Add(MakeParam("@data_txt", SqlDbType.NText, 8, dataTxt))
-        paramList.Add(MakeParam("@data_html", SqlDbType.NText, 8, dataHtml))
+        paramList.Add(MakeParam("@data_txt", SqlDbType.NText, 0, dataTxt))
+        paramList.Add(MakeParam("@data_html", SqlDbType.NText, 0, dataHtml))
         paramList.Add(MakeParam("@share_type", SqlDbType.NVarChar, 1, shareType))
         paramList.Add(MakeParam("@data_owner", SqlDbType.NVarChar, 10, dataOwner))
         paramList.Add(MakeParam("@touroku_time", SqlDbType.Date, 24, IIf(tourokuTime = "", DBNull.Value, tourokuTime)))

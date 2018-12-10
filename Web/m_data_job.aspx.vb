@@ -3,6 +3,8 @@ Imports System.Text
 Imports System.IO
 Imports EMAB = Itis.ApplicationBlocks.ExceptionManagement.UnTrappedExceptionManager
 Imports MyMethod = System.Reflection.MethodBase
+Imports System.Web
+
 Partial Class m_data_job
     Inherits System.Web.UI.Page
 
@@ -19,7 +21,14 @@ Partial Class m_data_job
         EMAB.AddMethodEntrance(Request.ApplicationPath & "." & MyClass.GetType.BaseType.FullName & "." & _
                                MyMethod.GetCurrentMethod.Name)
 
+        If Not IsPostBack Then
 
+            If Context.Items("User") Is Nothing AndAlso tbxDataOwner.Text <> "" Then
+                tbxDataOwner.Text = "guest"
+            End If
+
+            'tbxDataOwner.Text = Security.Principal.WindowsIdentity.GetCurrent().Name
+        End If
         'Response.Write(Request.ServerVariables("LOGON_USER"))
         Ajax()
 
@@ -69,7 +78,16 @@ Partial Class m_data_job
                 Dim dt As DataTable = BC.SelMDataJob(tbxIdx_key, "", "", "", "", "", "", "")
                 Response.Write(dt.Rows(0).Item("data_txt"))
                 Response.End()
+            ElseIf Request.Form("ajaxActionType") = "txt2" Then
+                Dim dt As DataTable = BC.SelMDataJob(tbxIdx_key, "", "", "", "", "", "", "")
+                Response.Write(dt.Rows(0).Item("data_html"))
+                Response.End()
 
+            ElseIf Request.Form("ajaxActionType") = "RowInfo" Then
+                Dim dt As DataTable = BC.SelMDataJob(tbxIdx_key, "", "", "", "", "", "", "")
+                Response.Write(dt.Rows(0).Item("share_type") & "," & dt.Rows(0).Item("data_owner"))
+                Response.End()
+                'RowInfo
             ElseIf Request.Form("ajaxActionType") = "update" Then
                 BC.UpdMDataJob(tbxIdx_key, tbxSiryouKind_key, tbxSystemName_key, tbxKinouName_key, tbxEdpNo_key, tbxEditorKind_key, tbxConnectNo_key, tbxMenuNo_key, tbxIdx, tbxSiryouKind, tbxSystemName, tbxKinouName, tbxEdpNo, tbxEditorKind, tbxConnectNo, tbxMenuNo, tbxFileName, tbxDataTxt, tbxDataHtml, tbxShareType, tbxDataOwner, tbxTourokuTime)
             ElseIf Request.Form("ajaxActionType") = "insert" Then
@@ -99,6 +117,24 @@ Partial Class m_data_job
                 Dim sw As New System.IO.StringWriter(sb)
                 Dim htw As New HtmlTextWriter(sw)
                 gvMs.RenderControl(htw)
+                Response.Write(htw.InnerWriter.ToString)
+                Response.End()
+            ElseIf Request.Form("ajaxActionType") = "sql_select" Then
+
+                Dim sql As String = Request.Form("sql")
+                Dim connectNo As String = Request.Form("tbxConnectNo_key")
+                Dim MDbConnectDA As New MDbConnectDA
+                Dim conn As String = MDbConnectDA.SelMDbConnect(connectNo).Rows(0).Item("connect_str")
+
+                Dim MDataJobDA As New MDataJobDA
+                Dim dt As DataTable = MDataJobDA.SelSql(conn, sql)
+
+                Me.gvSql.DataSource = dt
+                gvSql.DataBind()
+                Dim sb As New System.Text.StringBuilder()
+                Dim sw As New System.IO.StringWriter(sb)
+                Dim htw As New HtmlTextWriter(sw)
+                gvSql.RenderControl(htw)
                 Response.Write(htw.InnerWriter.ToString)
                 Response.End()
 
