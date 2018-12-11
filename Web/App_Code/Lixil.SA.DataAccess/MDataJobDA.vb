@@ -41,6 +41,31 @@ Public Class MDataJobDA
 
 
 
+    Public Function SelKj(ByVal db_name As String, ByVal item_jp As String) As String
+        'EMAB障害対応情報の格納処理
+
+
+        Dim dsInfo As New Data.DataSet
+
+        FillDataset(DataAccessManager.autocode, CommandType.Text, "SELECT [item_jp] FROM [t_table_info] WHERE [db_name]='" & db_name & "' and [item_en]='" & item_jp & "'", dsInfo, "m_system_name")
+
+        If dsInfo.Tables("m_system_name").Rows.Count > 0 Then
+            Return dsInfo.Tables("m_system_name").Rows(0).Item(0)
+        Else
+
+            FillDataset(DataAccessManager.autocode, CommandType.Text, "SELECT [item_jp] FROM [t_table_info] WHERE [item_en]='" & item_jp & "'", dsInfo, "m_system_name")
+
+            If dsInfo.Tables("m_system_name").Rows.Count > 0 Then
+                Return "!" & dsInfo.Tables("m_system_name").Rows(0).Item(0)
+            Else
+                Return ""
+            End If
+
+        End If
+
+    End Function
+
+
     ''' <summary>
     ''' 
     ''' システム名Info情報を検索する

@@ -339,11 +339,11 @@ $(document).ready(function () {
 
     });
 
-    $('input[type="text"]').click(
-        function () {           
-            $(this)[0].select();
-        }
-    );
+    //$('input[type="text"]').click(
+    //    function () {           
+    //        $(this)[0].select();
+    //    }
+    //);
 
     /*===============================================================*/
     /*行選択                                 

@@ -30,6 +30,15 @@
 
             <input type ="button" id="jianlue" value="簡略" style="height:40px;" onclick="" />
             <input type ="button" id="syousai" value="詳細" style="height:40px;" onclick="" />
+            <input type ="reset"  id="" value="reset" style="height:40px;        background-color: #d3dce0;
+        border: 1px solid #787878;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 7px;
+        margin-right: 8px;
+        width: auto;" onclick="" />
+
         </div>
         <asp:Label ID="lblMsg" runat="server" ForeColor="Red"></asp:Label>
                
@@ -54,7 +63,7 @@
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             <td> 
-                <asp:Button ID="btnSelect" runat="server" Text="検索全部条件" CssClass="jq_sel" Width="80" OnClientClick="ajax_select();return false;" />
+                <asp:Button ID="btnSelect" runat="server" Text="検索全部条件" style="height:20px;" CssClass="jq_sel" Width="80" OnClientClick="ajax_select();return false;" />
                 
             </td>
             </tr>
@@ -83,7 +92,7 @@
             <td> <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_system_name.aspx')" /></td>
             <td> 
                 &nbsp;</td>
-            <td> <asp:Button ID="btnSelectSome" runat="server" Text="検索一部条件" CssClass="jq_sel" Width="80" OnClientClick="ajax_select_itibu();return false;" /></td>
+            <td> <asp:Button ID="btnSelectSome" runat="server" Text="検索一部条件" style="height:20px;" CssClass="jq_sel" Width="80" OnClientClick="ajax_select_itibu();return false;" /></td>
             </tr>
 
             <tr>

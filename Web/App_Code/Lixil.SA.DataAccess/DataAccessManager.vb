@@ -18,6 +18,9 @@ Public NotInheritable Class DataAccessManager
         System.Configuration.ConfigurationManager. _
         ConnectionStrings("connectionString").ConnectionString
 
+    Private Shared autocodeStr As String = _
+        System.Configuration.ConfigurationManager. _
+        ConnectionStrings("autocode").ConnectionString
     ''' <summary>
     ''' コンストラクタ
     ''' </summary>
@@ -25,6 +28,7 @@ Public NotInheritable Class DataAccessManager
     Private Sub New()
 
     End Sub
+
 
     ''' <summary>
     ''' DB接続文字列の取得
@@ -35,6 +39,12 @@ Public NotInheritable Class DataAccessManager
     Public Shared ReadOnly Property Connection() As String
         Get
             Return connStr
+        End Get
+    End Property
+
+    Public Shared ReadOnly Property autocode() As String
+        Get
+            Return autocodeStr
         End Get
     End Property
 End Class

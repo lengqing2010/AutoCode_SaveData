@@ -130,8 +130,26 @@ Partial Class m_data_job
                 Dim MDataJobDA As New MDataJobDA
                 Dim dt As DataTable = MDataJobDA.SelSql(conn, sql)
 
+                Dim db_name As String = GetConnDataByKey(conn, "Initial Catalog")
+
+
+                For i As Integer = 0 To dt.Columns.Count - 1
+                    Dim item_en As String = dt.Columns(i).ColumnName.Trim
+                    Dim rtv As String = MDataJobDA.SelKj(db_name, item_en)
+                    If rtv <> "" Then
+                        dt.Columns(i).ColumnName &= vbNewLine & "(" & rtv & ")"
+                    End If
+                Next
+
+
                 Me.gvSql.DataSource = dt
                 gvSql.DataBind()
+
+   
+
+
+
+
                 Dim sb As New System.Text.StringBuilder()
                 Dim sw As New System.IO.StringWriter(sb)
                 Dim htw As New HtmlTextWriter(sw)
@@ -339,5 +357,24 @@ Me.hidOldRowIdx.Text = ""
             End Try
 Me.hidOldRowIdx.Text = ""
     End Sub
+
+
+
+    Public Function GetConnDataByKey(ByVal conn As String, ByVal key As String) As String
+        On Error GoTo Err
+        Dim arr
+        arr = Split(conn, ";")
+        Dim i, kmName
+        For i = 0 To UBound(arr)
+            If UCase(Split(Trim(arr(i)), "=")(0)) = UCase(key) Then
+                GetConnDataByKey = Split(Trim(arr(i)), "=")(1)
+                Exit Function
+            End If
+        Next
+        Exit Function
+Err:
+        GetConnDataByKey = ""
+    End Function
+
 
 End Class
