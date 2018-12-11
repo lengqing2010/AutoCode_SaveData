@@ -11,6 +11,8 @@
 
     <!--JS-->
     <script language="javascript" type="text/javascript" src="./js/jquery-1.4.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="./jquery-zclip-master/jquery.zclip.js"></script>
+    
     <script language="javascript" type="text/javascript" src="./JidouTemp.js"></script>
     <script language="javascript" type="text/javascript" src="./m_data_job.aspx.js"></script>
 
@@ -381,11 +383,21 @@
         <asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="jq_ins" Width="80" OnClientClick="ajax_insert();return false;" />
         <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="jq_upd" Width="80" OnClientClick="ajax_update();return false;" /> 
         <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="jq_del" Width="80" OnClientClick="ajax_delete();return false;" />
-
-
         <asp:Button ID="btnRunSQLSELECT" runat="server" Text="SQL SELECT" CssClass="" Width="180" OnClientClick="AjaxSQL('sql_select');return false;" />
-        <asp:Button ID="btnRunSQLRUN" runat="server" Text="SQL RUN" CssClass="" Width="180" OnClientClick="return false;" />
+        <asp:Button ID="btnRunSQLRUN" runat="server" Text="SQL RUN" CssClass="" Width="180" OnClientClick="AjaxSQL('sql_run');return false;" />
+    </div>
+    <div style="height:420px;width:1200px; margin-top:5px; ">
+        <div style="height:400px;width:400px;float:left;" id="editorDiv"></div>
+        <div style="height:400px;width:800px; " id="editorDiv2"></div>
+    </div>
 
+    <input type ="button" id="btnCopy" value="COPY" style="height:40px;" onclick="" />
+    <div id="divSqlDiv" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:480px;margin-left:0px; width:100%; margin-top :0px; border-collapse :collapse ; background-color:#eee;">
+        
+        <asp:GridView CssClass ="jq_ms_2" Width="1000px"  runat="server" ID="gvSql" EnableTheming="True" ShowHeader="True" AutoGenerateColumns="True" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
+            <HeaderStyle BackColor="#6699FF" BorderStyle="Solid" />
+        </asp:GridView>
+    </div>
         <asp:TextBox ID="hidIdx" runat="server" class="jq_idx_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidSiryouKind" runat="server" class="jq_siryou_kind_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidSystemName" runat="server" class="jq_system_name_ipt" style=" visibility:hidden;"></asp:TextBox>
@@ -401,21 +413,6 @@
         <asp:TextBox ID="hidDataOwner" runat="server" class="jq_data_owner_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidTourokuTime" runat="server" class="jq_touroku_time_ipt" style=" visibility:hidden;"></asp:TextBox>
         <asp:TextBox ID="hidOldRowIdx" runat="server" class="jq_hidOldRowIdx" style=" visibility:hidden;"></asp:TextBox>
-    </div>
-    <div style="height:600px;width:1700px; ">
-        <div style="height:400px;width:800px;float:left;" id="editorDiv"></div>
-        <div style="height:400px;width:800px; " id="editorDiv2"></div>
-    </div>
-
-
-        
-        <div id="divSqlDiv" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:180px;margin-left:0px; width:100%; margin-top :0px; border-collapse :collapse ; background-color:#eee;">
-        <asp:GridView CssClass ="jq_ms" Width="1000px"  runat="server" ID="gvSql" EnableTheming="True" ShowHeader="True" AutoGenerateColumns="True" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
-        <Columns>
-        </Columns>
-        </asp:GridView>
-        </div>
-
 
 <%--<div id="div1" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:580px;margin-left:0px; width:1020px; margin-top :0px; border-collapse :collapse ; background-color:#eee;">
     <asp:GridView CssClass ="jq_ms" Width="1000px"  runat="server" ID="GridView1" EnableTheming="True" ShowHeader="True" AutoGenerateColumns="True" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
@@ -440,7 +437,7 @@
             //设置是否只读
             editor.setReadOnly(false);
 
-            editor.setFontSize(16);
+            editor.setFontSize(12);
 
             //以下部分是设置输入代码提示的，如果不需要可以不用引用ext-language_tools.js
             ace.require("ace/ext/language_tools");
@@ -453,7 +450,7 @@
 
             editor2 = ace.edit("editorDiv2");
             //设置编辑器样式，对应theme-*.js文件
-            editor2.setTheme("ace/theme/twilight");
+            editor2.setTheme("ace/theme/clouds");
             //设置代码语言，对应mode-*.js文件
             editor2.session.setMode("ace/mode/javascript");
             //设置打印线是否显示
@@ -461,7 +458,7 @@
             //设置是否只读
             editor2.setReadOnly(false);
 
-            editor2.setFontSize(16);
+            editor2.setFontSize(12);
 
             //以下部分是设置输入代码提示的，如果不需要可以不用引用ext-language_tools.js
             ace.require("ace/ext/language_tools");

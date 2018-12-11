@@ -903,4 +903,21 @@ function disableAfterTimeout() {
 }
 
 window.onactivate = function () {
-    return disableButton();}
+    return disableButton();
+}
+
+
+
+function WaitPanelShow(msg) {
+    var h = document.body.clientHeight;
+    if (msg == '') {
+        msg = '実行中です、しばらくお待ち下さい';
+    }
+    $("<div class=\"datagrid-mask\">"+msg+"</div>").css({ display: "block", width: "100%", height: h }).appendTo("body");
+}
+
+function WaitPanelRemove() {
+    setTimeout(function () {
+        $('.datagrid-mask').remove();
+    }, 0);
+}

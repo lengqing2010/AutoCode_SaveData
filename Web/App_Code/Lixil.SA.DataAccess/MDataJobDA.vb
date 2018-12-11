@@ -23,6 +23,22 @@ Public Class MDataJobDA
 
     End Function
 
+    Public Function SqlRun(ByVal conn As String, ByVal sql As String) As String
+        'EMAB障害対応情報の格納処理
+
+
+        Dim dsInfo As New Data.DataSet
+
+        Try
+            Return SQLHelper.ExecuteNonQuery(conn, CommandType.Text, sql)
+        Catch ex As Exception
+            Return ex.Message
+        End Try
+
+
+
+    End Function
+
 
 
     ''' <summary>

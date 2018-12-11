@@ -48,6 +48,9 @@ Partial Class m_data_job
 
     End Sub
 
+
+    Public splitor As String = "@!--lis-->||"
+
     Sub Ajax()
         If Request.Form("ajaxActionType") IsNot Nothing Then
 
@@ -77,17 +80,13 @@ Partial Class m_data_job
             If Request.Form("ajaxActionType") = "txt" Then
                 Dim dt As DataTable = BC.SelMDataJob(tbxIdx_key, "", "", "", "", "", "", "")
                 Response.Write(dt.Rows(0).Item("data_txt"))
-                Response.End()
-            ElseIf Request.Form("ajaxActionType") = "txt2" Then
-                Dim dt As DataTable = BC.SelMDataJob(tbxIdx_key, "", "", "", "", "", "", "")
+                Response.Write(splitor)
                 Response.Write(dt.Rows(0).Item("data_html"))
+                Response.Write(splitor)
+                Response.Write(dt.Rows(0).Item("share_type"))
+                Response.Write(splitor)
+                Response.Write(dt.Rows(0).Item("data_owner"))
                 Response.End()
-
-            ElseIf Request.Form("ajaxActionType") = "RowInfo" Then
-                Dim dt As DataTable = BC.SelMDataJob(tbxIdx_key, "", "", "", "", "", "", "")
-                Response.Write(dt.Rows(0).Item("share_type") & "," & dt.Rows(0).Item("data_owner"))
-                Response.End()
-                'RowInfo
             ElseIf Request.Form("ajaxActionType") = "update" Then
                 BC.UpdMDataJob(tbxIdx_key, tbxSiryouKind_key, tbxSystemName_key, tbxKinouName_key, tbxEdpNo_key, tbxEditorKind_key, tbxConnectNo_key, tbxMenuNo_key, tbxIdx, tbxSiryouKind, tbxSystemName, tbxKinouName, tbxEdpNo, tbxEditorKind, tbxConnectNo, tbxMenuNo, tbxFileName, tbxDataTxt, tbxDataHtml, tbxShareType, tbxDataOwner, tbxTourokuTime)
             ElseIf Request.Form("ajaxActionType") = "insert" Then
@@ -96,6 +95,8 @@ Partial Class m_data_job
                 BC.DelMDataJob(tbxIdx_key, tbxSiryouKind_key, tbxSystemName_key, tbxKinouName_key, tbxEdpNo_key, tbxEditorKind_key, tbxConnectNo_key, tbxMenuNo_key)
             End If
 
+
+            'Gridview もどり
             If Request.Form("ajaxActionType") = "select" Then
                 Response.ClearContent()
                 Dim dt As DataTable = BC.SelMDataJob("", tbxSiryouKind_key, tbxSystemName_key, tbxKinouName_key, tbxEdpNo_key, tbxEditorKind_key, tbxConnectNo_key, tbxMenuNo_key)
@@ -137,7 +138,15 @@ Partial Class m_data_job
                 gvSql.RenderControl(htw)
                 Response.Write(htw.InnerWriter.ToString)
                 Response.End()
+            ElseIf Request.Form("ajaxActionType") = "sql_run" Then
 
+                Dim sql As String = Request.Form("sql")
+                Dim connectNo As String = Request.Form("tbxConnectNo_key")
+                Dim MDbConnectDA As New MDbConnectDA
+                Dim conn As String = MDbConnectDA.SelMDbConnect(connectNo).Rows(0).Item("connect_str")
+                Dim MDataJobDA As New MDataJobDA
+                Response.Write(MDataJobDA.SqlRun(conn, sql))
+                Response.End()
             Else
                 Response.ClearContent()
                 Dim dt As DataTable = BC.SelMDataJob("", "", tbxSystemName_key, tbxKinouName_key, tbxEdpNo_key, "", "", "")

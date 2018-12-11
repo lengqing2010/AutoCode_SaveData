@@ -225,3 +225,40 @@ td {
 
 
 
+.jq_ms_2 tr{
+
+}
+.jq_ms_2 td{
+    border: black 1px solid;
+    font-size: 9px;
+    padding:0px;
+    height:10px;
+    line-height:10px;
+}
+.jq_ms_2 th{
+    background-color: #99ccff;
+    border: black 1px solid;
+    font-size: 10px;
+    padding:0px;
+    height:10px;
+    text-align:center;
+}
+
+
+
+
+
+.datagrid-mask{
+    position:absolute;
+    left:0;
+    top:0;
+    text-align:center;
+    vertical-align:middle;
+    font-size:40px;
+    line-height:800px;
+    z-index:10000;
+    background-color:#ccc;
+    opacity:0.4;
+    filter:alpha(opacity=40); /* 针对 IE8 以及更早的版本 */
+}
+
