@@ -26,21 +26,15 @@
 <body>
 <form id="form1" runat="server">
     <div>
-        <div class='title_div'>仕事データ
+        <div class='title_div'>
 
-            <input type ="button" id="jianlue" value="簡略" style="height:40px;" onclick="" />
-            <input type ="button" id="syousai" value="詳細" style="height:40px;" onclick="" />
-            <input type ="reset"  id="" value="reset" style="height:40px;        background-color: #d3dce0;
-        border: 1px solid #787878;
-        cursor: pointer;
-        font-size: 1.2em;
-        font-weight: 600;
-        padding: 7px;
-        margin-right: 8px;
-        width: auto;" onclick="" />
+            <input type ="button" class="btn_main" id="jianlue" value="簡略"  />
+            <input type ="button" class="btn_main" id="syousai" value="詳細"  />
+            <input type ="reset"  class="btn_main" id="" value="reset" />
 
+            <asp:Label ID="lblMsg" runat="server" ForeColor="Red" Font-Size="20"></asp:Label>
         </div>
-        <asp:Label ID="lblMsg" runat="server" ForeColor="Red"></asp:Label>
+        
                
         <hr />
 <!--条件部-->
@@ -52,7 +46,8 @@
             <th> 説明</th>
             <th> MS</th>
             <th> &nbsp;</th>
-            <th> &nbsp;</th>
+            <th style="text-align:right;">
+                <input type ="button" class="btn_hid" value="￣" style="" onclick="$('.jyouken_panel').hide(500);" /></th>
             </tr>
             <tr>
             <td>INDEX : &nbsp;</td>
@@ -70,7 +65,7 @@
             <tr>
             <td>資料分類 : &nbsp;</td>
             <td>
-              <asp:TextBox ID="tbxSiryouKind_key" class="jq_siryou_kind_key" runat="server" style="width:20px;background-color: #FFAA00;"></asp:TextBox>0:案件、1:技術
+              <asp:TextBox ID="tbxSiryouKind_key" class="jq_siryou_kind_key" runat="server" style="width:20px;background-color: #FFAA00;" Text="0"></asp:TextBox>0:案件、1:技術
             </td>
             <td> 　</td>
             <td></td>
@@ -177,7 +172,7 @@
             <td>
                 <asp:DropDownList ID="ddlType" runat="server" Width="100px" BackColor="#EEE8AA" CssClass="txt">
                     <asp:ListItem Value=""></asp:ListItem>
-            <asp:ListItem Value="text">Text</asp:ListItem>
+            <asp:ListItem Value="text" Selected="True" >Text</asp:ListItem>
             <asp:ListItem Value="sqlserver">SQLServer</asp:ListItem>
             <asp:ListItem Value="sql">SQL</asp:ListItem>
             <asp:ListItem Value="mysql">MySQL</asp:ListItem>
@@ -337,7 +332,7 @@
 
 <!--明細Title部-->
 <div id="divGvwTitle" class='jq_title_div' runat ="server" style="overflow:hidden ;margin-left:0px; width:1004px; margin-top :0px; border-collapse :collapse ;">
-    <hr />
+    <input type ="button" value="￣" onclick="$('#divGvwTitle,#divGvw').hide(500);"  class="btn_hid"/>
       <table class='ms_title' style="width:1000px" cellpadding="0" cellspacing="0">
           <tr>
               <td style="width:44px;">
@@ -440,7 +435,7 @@
             //设置编辑器样式，对应theme-*.js文件
             editor.setTheme("ace/theme/twilight");
             //设置代码语言，对应mode-*.js文件
-            editor.session.setMode("ace/mode/javascript");
+            editor.session.setMode("ace/mode/text");
             //设置打印线是否显示
             editor.setShowPrintMargin(false);
             //设置是否只读

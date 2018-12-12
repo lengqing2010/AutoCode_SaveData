@@ -23,7 +23,7 @@ Partial Class m_data_job
 
         If Not IsPostBack Then
 
-            If Context.Items("User") Is Nothing AndAlso tbxDataOwner.Text <> "" Then
+            If Context.Items("User") Is Nothing AndAlso tbxDataOwner.Text = "" Then
                 tbxDataOwner.Text = "guest"
             End If
 
@@ -58,7 +58,7 @@ Partial Class m_data_job
             Dim tbxSiryouKind_key As String = Request.Form("tbxSiryouKind_key")
             Dim tbxSystemName_key As String = Request.Form("tbxSystemName_key")
             Dim tbxKinouName_key As String = Request.Form("tbxKinouName_key")
-            Dim tbxEdpNo_key As String = Request.Form("tbxEdpNo_key")
+            Dim tbxEdpNo_key As String = Request.Form("tbxEdpNo_key").Split(":")(0)
             Dim tbxEditorKind_key As String = Request.Form("tbxEditorKind_key")
             Dim tbxConnectNo_key As String = Request.Form("tbxConnectNo_key")
             Dim tbxMenuNo_key As String = Request.Form("tbxMenuNo_key")
@@ -167,7 +167,7 @@ Partial Class m_data_job
                 Response.End()
             Else
                 Response.ClearContent()
-                Dim dt As DataTable = BC.SelMDataJob("", "", tbxSystemName_key, tbxKinouName_key, tbxEdpNo_key, "", "", "")
+                Dim dt As DataTable = BC.SelMDataJob("", "", tbxSystemName_key, "", tbxEdpNo_key, "", "", "")
                 Me.gvMs.DataSource = dt
                 gvMs.DataBind()
                 Dim sb As New System.Text.StringBuilder()

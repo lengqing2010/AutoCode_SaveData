@@ -1,5 +1,9 @@
 ﻿//AJAX Reload GridView (Delete Insert Select)
-function AjaxPost(ajaxActionType){
+function AjaxPost(ajaxActionType) {
+
+    $('#btnUpdate').hide();
+    $('#btnDelete').hide();
+
     $.ajax({
         type: 'POST',
         url: 'm_data_job.aspx',
@@ -26,7 +30,7 @@ function AjaxPost(ajaxActionType){
             , tbxDataTxt: editor.getValue()
             , tbxDataHtml: editor2.getValue()
             , tbxShareType: $('#ddlShareType').val()
-            , tbxDataOwner:''
+            , tbxDataOwner: $('#tbxDataOwner').val()
             , tbxTourokuTime:''
         },
         datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
@@ -78,7 +82,7 @@ function AjaxPostUpdate(ajaxActionType) {
             , tbxDataTxt: editor.getValue()
             , tbxDataHtml: editor2.getValue()
             , tbxShareType: $('#ddlShareType').val()
-            , tbxDataOwner: ''
+            , tbxDataOwner: $('#tbxDataOwner').val()
             , tbxTourokuTime: ''
         },
         datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
@@ -129,7 +133,7 @@ function AjaxPostTxt(ajaxActionType) {
             , tbxDataTxt: editor.getValue()
             , tbxDataHtml: editor2.getValue()
             , tbxShareType: $('#ddlShareType').val()
-            , tbxDataOwner: ''
+            , tbxDataOwner: $('#tbxDataOwner').val()
             , tbxTourokuTime: ''
         },
         datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
@@ -239,8 +243,11 @@ function ajax_update(){
     });
 }
 // 削除
-function ajax_delete(){
-    AjaxPost('delete');
+function ajax_delete() {
+    if (confirm('Do delelte it ?')) {
+        AjaxPost('delete');
+    }
+    
     //$(".jq_ms tr").last().click();
 }
 // 登録
@@ -266,15 +273,22 @@ function ajax_txt() {
 $(document).ready(function () {
 
 
+    $('#btnUpdate').hide();
+    $('#btnDelete').hide();
+
     $("#tbxSystemName_key,#tbxSystemName").focus(function () {
         AjaxList('SystemName', 'm_data_job_ajax.aspx', '#tbxSystemName_key_list');
+    });
+    $("#tbxSystemName_key,#tbxSystemName").blur(function () {
+        $(this).val($(this).val().toUpperCase());
     });
 
     $("#tbxEdpNo_key").focus(function () {
         AjaxList('EdpNo', 'm_data_job_ajax.aspx', '#tbxEdpNo_key_list');
     });
     $("#tbxEdpNo_key").blur(function () {
-        $(this).val($(this).val().split(':')[0]);
+        //$(this).val($(this).val().split(':')[0]);
+        $(this).val($(this).val().toUpperCase());
     });
 
     $("#tbxConnectNo_key").focus(function () {
@@ -329,6 +343,10 @@ function MsInit() {
     /*行選択                                 
     /*===============================================================*/
     $(".jq_ms tr").click(function () {
+
+        $('#btnUpdate').show();
+        $('#btnDelete').show();
+
         $('.jq_upd').removeAttr("disabled");
         $('.jq_del').removeAttr("disabled");
         if (SelectRow == null) { } else {

@@ -14,6 +14,10 @@ body {
     padding: 0;
 }
 
+
+
+
+
 a {
     color: #333;
     outline: none;
@@ -106,15 +110,38 @@ textarea {
     input[type="submit"],
     input[type="button"],
     button {
-        background-color: #d3dce0;
         border: 1px solid #787878;
         cursor: pointer;
-        font-size: 1.2em;
         font-weight: 600;
-        padding: 7px;
-        margin-right: 8px;
+        padding: 2px;
+        margin-right: 2px;
         width: auto;
+
+    padding: 2px;
+    margin-right: 2px;
+    border-radius:6px;
+    text-decoration:none;
+	background:#8bf13c;
+	color:#000;
+	-webkit-transition:all linear 0.30s;
+	-moz-transition:all linear 0.30s;
+	transition:all linear 0.30s;
+
     }
+
+    input[type="button"]:hover {
+        background-color: #fff;
+        color:#000;
+    }
+    input[type="submit"]:hover {
+        background-color: #fff;
+        color:#000;
+    }
+    button:hover {
+        background-color: #fff;
+        color:#000;
+    }
+
 
     td input[type="submit"],
     td input[type="button"],
@@ -262,3 +289,25 @@ td {
     filter:alpha(opacity=40); /* 针对 IE8 以及更早的版本 */
 }
 
+
+.btn_hid{
+    height:15px; 
+    width:110px;
+    vertical-align:middle; 
+    padding:1px;
+    float:right;
+    font-size:8px;
+    border-radius:16px;
+}
+.btn_main{
+    height:22px;    
+    width: 90px;  
+    border: 1px solid #787878;
+    cursor: pointer;
+    font-size: 11px;
+
+}
+.btn_main:hover {
+    background-color: #fff;
+    color:#000;
+}
