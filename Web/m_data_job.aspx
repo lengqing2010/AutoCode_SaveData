@@ -25,51 +25,70 @@
 </head>
 <body>
 <form id="form1" runat="server">
-    <div>
-        <div class='title_div'>
-
-            <input type ="button" class="btn_main" id="jianlue" value="簡略"  />
-            <input type ="button" class="btn_main" id="syousai" value="詳細"  />
-            <input type ="reset"  class="btn_main" id="" value="reset" />
-
-            <asp:Label ID="lblMsg" runat="server" ForeColor="Red" Font-Size="20"></asp:Label>
+        <div class='title_div' style="position:fixed; width:100%;height:auto; background:#fff; margin:0px;
+        overflow-y:auto;
+        border-bottom:3px solid #000;margin-top:-15px;">
+            <table border="0">
+                <tr>
+                    <td style="border-width:0;width:1000px;">
+                        <asp:Label ID="lblMsg" runat="server" ForeColor="Red" Font-Size="11" Style="margin-top:4px;"></asp:Label>
+                    </td>
+                    <td style="border-width:0">
+                        <input type ="button" class="btn_main" id="jianlue" value="簡略"  />
+                        <input type ="button" class="btn_main" id="syousai" value="詳細"  />
+                        <input type ="reset"  class="btn_main" id="" value="reset" />
+                    </td>
+                </tr>
+            </table>         
         </div>
-        
+    
+    
+    <hr /><hr /><hr />
+
+    <div style="">
+       
                
-        <hr />
+        
 <!--条件部-->
-        <table class='jyouken_panel' cellpadding="0" cellspacing="0">
-            <tr>
-            <th>項目</th>
-            <th>
-                INPUT</th>
-            <th> 説明</th>
-            <th> MS</th>
-            <th> &nbsp;</th>
-            <th style="text-align:right;">
-                <input type ="button" class="btn_hid" value="￣" style="" onclick="$('.jyouken_panel').hide(500);" /></th>
-            </tr>
+        <table class='jyouken_panel' cellpadding="0" cellspacing="0" >
             <tr>
             <td>INDEX : &nbsp;</td>
             <td>
-              <asp:TextBox ID="tbxIdx_key" class="jq_idx_key" runat="server" style="width:64px;background-color: #FFAA00;"></asp:TextBox>
+              <asp:TextBox ID="tbxIdx_key" class="jq_idx_key" runat="server" style="width:64px;background-color: #FFFFE0;"></asp:TextBox>
             </td>
+            <td>
+                資料分類 : &nbsp;</td>
+            <td>
+                 <asp:TextBox ID="tbxSiryouKind_key" class="jq_siryou_kind_key" runat="server" style="width:20px;background-color: #FFFFE0;" Text="0"></asp:TextBox>0:案件、1:技術
+</td>
             <td> </td>
             <td> &nbsp;</td>
-            <td> &nbsp;</td>
-            <td> 
+            <td style="width:300px;">  
                 <asp:Button ID="btnSelect" runat="server" Text="検索全部条件" style="height:20px;" CssClass="jq_sel" Width="80" OnClientClick="ajax_select();return false;" />
                 
-            </td>
+                </td>
+            <td> 
+                <input type ="button" class="btn_hid" value="￣" style="" onclick="$('.jyouken_panel').hide(500);" /></td>
             </tr>
             <tr>
-            <td>資料分類 : &nbsp;</td>
+            <td>システム名 : &nbsp</td>
             <td>
-              <asp:TextBox ID="tbxSiryouKind_key" class="jq_siryou_kind_key" runat="server" style="width:20px;background-color: #FFAA00;" Text="0"></asp:TextBox>0:案件、1:技術
+                <asp:TextBox ID="tbxSystemName_key" class="jq_system_name_key" runat="server" style="width:200px;background-color: #FFFFE0;" list="tbxSystemName_key_list"></asp:TextBox>
+                <datalist id="tbxSystemName_key_list"></datalist> VAPM、SA
+                <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_system_name.aspx')" />
+            </td>
+            <td>EDP番号 : &nbsp;</td>
+            <td>
+              <asp:TextBox ID="tbxEdpNo_key" class="jq_edp_no_key" runat="server" style="width:128px;background-color: #FFFFE0;" list="tbxEdpNo_key_list"></asp:TextBox>
+              <datalist id="tbxEdpNo_key_list"></datalist> 自分：Zxxxxxx Company：Rxxxxx
+              <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_edp.aspx')" />
             </td>
             <td> 　</td>
             <td></td>
             <td> 
+
+        
+                <asp:Button ID="btnSelectSome" runat="server" Text="検索一部条件" style="height:20px;" CssClass="jq_sel" Width="80" OnClientClick="ajax_select_itibu();return false;" /> 
 
         
                 </td>
@@ -78,71 +97,49 @@
                 &nbsp;</td>
             </tr>
             <tr>
-            <td>システム名 : &nbsp;</td>
-            <td>
-              <asp:TextBox ID="tbxSystemName_key" class="jq_system_name_key" runat="server" style="width:200px;background-color: #FFAA00;" list="tbxSystemName_key_list"></asp:TextBox>
-              <datalist id="tbxSystemName_key_list"></datalist> VAPM、SA
-            </td>
-            <td> </td>
-            <td> <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_system_name.aspx')" /></td>
-            <td> 
-                &nbsp;</td>
-            <td> <asp:Button ID="btnSelectSome" runat="server" Text="検索一部条件" style="height:20px;" CssClass="jq_sel" Width="80" OnClientClick="ajax_select_itibu();return false;" /></td>
-            </tr>
-
-            <tr>
-            <td>EDP番号 : &nbsp;</td>
-            <td>
-              <asp:TextBox ID="tbxEdpNo_key" class="jq_edp_no_key" runat="server" style="width:128px;background-color: #FFAA00;" list="tbxEdpNo_key_list"></asp:TextBox>
-              <datalist id="tbxEdpNo_key_list"></datalist> 自分：Zxxxxxx Company：Rxxxxx
-            </td>
-            <td></td>
-            <td> <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_edp.aspx')" /></td>
-            <td> &nbsp;</td>
-            <td> &nbsp;</td>
-            </tr>
-
-            <tr>
-            <td>機能名 : &nbsp;</td>
-            <td>
-              <asp:TextBox ID="tbxKinouName_key" class="jq_kinou_name_key" runat="server" style="width:200px;background-color: #FFAA00;"></asp:TextBox>
-            </td>
-            <td> </td>
-            <td> &nbsp;</td>
-            <td> &nbsp;</td>
-            <td> &nbsp;</td>
-            </tr>
-
-
-            <tr>
             <td>DB接続No : &nbsp;</td>
-            <td>
-              <asp:TextBox ID="tbxConnectNo_key" class="jq_connect_no_key" runat="server" style="width:600px;background-color: #FFAA00;" list="tbxConnectNo_key_list"></asp:TextBox>
+            <td colspan="4">
+              <asp:TextBox ID="tbxConnectNo_key" class="jq_connect_no_key" runat="server" style="width:600px;background-color: #FFFFE0;" list="tbxConnectNo_key_list"></asp:TextBox>
               <datalist id="tbxConnectNo_key_list"></datalist>
+                <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_db_connect.aspx')" />
             </td>
             <td> </td>
-            <td> <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_db_connect.aspx')" /></td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             </tr>
             <tr>
             <td>メニューNo : &nbsp;</td>
             <td>
-              <asp:TextBox ID="tbxMenuNo_key" class="jq_menu_no_key" runat="server" style="width:200px;background-color: #FFAA00;"></asp:TextBox> メニューNo（空白可）
+              <asp:TextBox ID="tbxMenuNo_key" class="jq_menu_no_key" runat="server" style="width:200px;background-color: #FFFFE0;"></asp:TextBox>（空白可）
             </td>
+            <td>
+                USER</td>
+            <td>
+               <asp:TextBox ID="tbxDataOwner" class="jq_data_owner_ipt" runat="server" style="width:164px;"></asp:TextBox>
+</td>
             <td> </td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             </tr>
             <tr>
-            <td>ファイル名</td>
-            <td><asp:TextBox ID="tbxFileName" class="jq_file_name_ipt" runat="server" style="width:204px;"></asp:TextBox></td>
-            <td></td>
+            <td>機能名 : &nbsp;</td>
+            <td>
+              <asp:TextBox ID="tbxKinouName_key" class="jq_kinou_name_key" runat="server" style="width:200px;background-color: #FFFFE0;"></asp:TextBox>
+            </td>
+            <td>
+                ファイル名</td>
+            <td>
+               <asp:TextBox ID="tbxFileName" class="jq_file_name_ipt" runat="server" style="width:204px;"></asp:TextBox></td>
+            <td> </td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             </tr>
+
+
+
+
             <tr>
             <td>共有</td>
             <td>
@@ -151,27 +148,90 @@
                      <asp:ListItem Value="0">0:自分</asp:ListItem>
                  </asp:DropDownList>  
             </td>
-            <td>&nbsp;</td>
-            <td> &nbsp;</td>
-            <td> &nbsp;</td>
+            <td>
+                 Like Key</td>
+            <td colspan="3">
+                
+
+               <asp:TextBox ID="tbxTxt" class="" runat="server" style="width:350px;"></asp:TextBox>
+
+
+                   </td>
+            <td>   <asp:Button ID="Button1" runat="server" Text="検索一部条件" style="height:20px;" CssClass="jq_sel"
+                 Width="80" OnClientClick="AjaxPost('select_like');return false;" /> 
+</td>
             <td> &nbsp;</td>
             </tr>
+         
+
+            
+        </table>
+
+<!--Button部-->
+
+        
+
+<!--明細Title部-->
+<div id="divGvwTitle" class='jq_title_div' runat ="server" style="overflow:hidden ;margin-left:0px; width:1080px; margin-top :0px; border-collapse :collapse ;">
+        <input type ="button" value="￣" onclick="$('#divGvwTitle,#divGvw').hide(500);"  class="btn_hid"/>
+      <table class='ms_title' style="width:1000px" cellpadding="0" cellspacing="0">
+          <tr>
+              <td style="width:44px;">
+                  INDEX
+              </td>
+              <td style="width:30px;">
+                  資料分類 
+              </td>
+              <td style="width:110px;">
+                  システム名 
+              </td>
+              <td style="width:210px;">
+                  機能名 
+              </td>
+              <td style="width:68px;">
+                  EDP番号 
+              </td>
+              <td style="width:80px;">
+                  Editor種類 
+              </td>
+              <td style="width:74px;">
+                  DB接続No
+              </td>
+              <td style="width:70px;">
+                  メニューNo 
+              </td>
+              <td style="">
+                  ファイル名 
+              </td>
+          </tr>
+      </table>
+</div>
+
+<!--明細Body部-->
+<div id="divGvw" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:180px;margin-left:0px; width:1020px; margin-top :0px; border-collapse :collapse ;">
+   <asp:GridView CssClass ="jq_ms" Width="1000px"  runat="server" ID="gvMs" EnableTheming="True" ShowHeader="False" AutoGenerateColumns="False" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
+      <Columns>
+          <asp:TemplateField><ItemTemplate ><%#Eval("idx")%></ItemTemplate><ItemStyle Width="44px" HorizontalAlign="Left" CssClass="jq_idx" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("siryou_kind")%></ItemTemplate><ItemStyle Width="30px" HorizontalAlign="Left" CssClass="jq_siryou_kind" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("system_name")%></ItemTemplate><ItemStyle Width="110px" HorizontalAlign="Left" CssClass="jq_system_name" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("kinou_name")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_kinou_name" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("edp_no")%></ItemTemplate><ItemStyle Width="68px" HorizontalAlign="Left" CssClass="jq_edp_no" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("editor_kind")%></ItemTemplate><ItemStyle Width="80px" HorizontalAlign="Left" CssClass="jq_editor_kind" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("connect_no")%></ItemTemplate><ItemStyle Width="74px" HorizontalAlign="Left" CssClass="jq_connect_no" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("menu_no")%></ItemTemplate><ItemStyle Width="70px" HorizontalAlign="Left" CssClass="jq_menu_no" /></asp:TemplateField>
+          <asp:TemplateField><ItemTemplate ><%#Eval("file_name")%></ItemTemplate><ItemStyle Width="" HorizontalAlign="Left" CssClass="jq_file_name" /></asp:TemplateField>
+
+      </Columns>
+   </asp:GridView>
+</div>
+        <hr />
+        <table>
             <tr>
-            <td>USER</td>
-            <td>
-                 <asp:TextBox ID="tbxDataOwner" class="jq_data_owner_ipt" runat="server" style="width:164px;"></asp:TextBox>
-  
-            </td>
-            <td>&nbsp;</td>
-            <td> &nbsp;</td>
-            <td> &nbsp;</td>
-            <td> &nbsp;</td>
-            </tr>
-            <tr>
-            <td>Editor種類 : &nbsp;</td>
-            <td>
-                <asp:DropDownList ID="ddlType" runat="server" Width="100px" BackColor="#EEE8AA" CssClass="txt">
-                    <asp:ListItem Value=""></asp:ListItem>
+                <td style="width:400px; border-style:none;">
+
+
+        <asp:DropDownList ID="ddlType" runat="server" Width="100px" BackColor="#8bf13c" CssClass="txt">
+            <asp:ListItem Value=""></asp:ListItem>
             <asp:ListItem Value="text" Selected="True" >Text</asp:ListItem>
             <asp:ListItem Value="sqlserver">SQLServer</asp:ListItem>
             <asp:ListItem Value="sql">SQL</asp:ListItem>
@@ -317,79 +377,24 @@
             <asp:ListItem Value="yaml">YAML</asp:ListItem>
             <asp:ListItem Value="django">Django</asp:ListItem>
         </asp:DropDownList>  
-             <%-- <asp:TextBox ID="tbxEditorKind_key" class="jq_editor_kind_key" runat="server" style="width:200px;background-color: #FFAA00;"></asp:TextBox>--%>
-            </td>
-            <td> </td>
-            <td> &nbsp;</td>
-            <td> &nbsp;</td>
-            <td> &nbsp;</td>
-            </tr>           
-        </table>
-
-<!--Button部-->
-
-        
-
-<!--明細Title部-->
-<div id="divGvwTitle" class='jq_title_div' runat ="server" style="overflow:hidden ;margin-left:0px; width:1004px; margin-top :0px; border-collapse :collapse ;">
-    <input type ="button" value="￣" onclick="$('#divGvwTitle,#divGvw').hide(500);"  class="btn_hid"/>
-      <table class='ms_title' style="width:1000px" cellpadding="0" cellspacing="0">
-          <tr>
-              <td style="width:44px;">
-                  INDEX
-              </td>
-              <td style="width:30px;">
-                  資料分類 
-              </td>
-              <td style="width:110px;">
-                  システム名 
-              </td>
-              <td style="width:210px;">
-                  機能名 
-              </td>
-              <td style="width:68px;">
-                  EDP番号 
-              </td>
-              <td style="width:80px;">
-                  Editor種類 
-              </td>
-              <td style="width:74px;">
-                  DB接続No
-              </td>
-              <td style="width:70px;">
-                  メニューNo 
-              </td>
-              <td style="">
-                  ファイル名 
-              </td>
-          </tr>
-      </table>
-</div>
-
-<!--明細Body部-->
-<div id="divGvw" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:180px;margin-left:0px; width:1020px; margin-top :0px; border-collapse :collapse ;">
-   <asp:GridView CssClass ="jq_ms" Width="1000px"  runat="server" ID="gvMs" EnableTheming="True" ShowHeader="False" AutoGenerateColumns="False" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >
-      <Columns>
-          <asp:TemplateField><ItemTemplate ><%#Eval("idx")%></ItemTemplate><ItemStyle Width="44px" HorizontalAlign="Left" CssClass="jq_idx" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("siryou_kind")%></ItemTemplate><ItemStyle Width="30px" HorizontalAlign="Left" CssClass="jq_siryou_kind" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("system_name")%></ItemTemplate><ItemStyle Width="110px" HorizontalAlign="Left" CssClass="jq_system_name" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("kinou_name")%></ItemTemplate><ItemStyle Width="210px" HorizontalAlign="Left" CssClass="jq_kinou_name" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("edp_no")%></ItemTemplate><ItemStyle Width="68px" HorizontalAlign="Left" CssClass="jq_edp_no" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("editor_kind")%></ItemTemplate><ItemStyle Width="80px" HorizontalAlign="Left" CssClass="jq_editor_kind" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("connect_no")%></ItemTemplate><ItemStyle Width="74px" HorizontalAlign="Left" CssClass="jq_connect_no" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("menu_no")%></ItemTemplate><ItemStyle Width="70px" HorizontalAlign="Left" CssClass="jq_menu_no" /></asp:TemplateField>
-          <asp:TemplateField><ItemTemplate ><%#Eval("file_name")%></ItemTemplate><ItemStyle Width="" HorizontalAlign="Left" CssClass="jq_file_name" /></asp:TemplateField>
-
-      </Columns>
-   </asp:GridView>
-</div>
-        <hr />
-        <asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="jq_ins" Width="80" OnClientClick="ajax_insert();return false;" />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+       <asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="jq_ins" Width="80" OnClientClick="ajax_insert();return false;" />
         <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="jq_upd" Width="80" OnClientClick="ajax_update();return false;" /> 
         <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="jq_del" Width="80" OnClientClick="ajax_delete();return false;" />
-        <asp:Button ID="btnRunSQLSELECT" runat="server" Text="SQL SELECT" CssClass="" Width="180" OnClientClick="AjaxSQL('sql_select');return false;" />
+
+                </td>
+               
+                <td style=" border-style:none;">
+
+         <asp:Button ID="btnRunSQLSELECT" runat="server" Text="SQL SELECT" CssClass="" Width="180" OnClientClick="AjaxSQL('sql_select');return false;" />
         <asp:Button ID="btnRunSQLRUN" runat="server" Text="SQL RUN" CssClass="" Width="180" OnClientClick="AjaxSQL('sql_run');return false;" />
+
+
+                </td>
+            </tr>
+        </table>
     </div>
+
     <div style="height:420px;width:1200px; margin-top:5px; ">
         <div style="height:400px;width:400px;float:left;" id="editorDiv"></div>
         <div style="height:400px;width:800px; " id="editorDiv2"></div>
@@ -402,21 +407,22 @@
             <HeaderStyle BackColor="#6699FF" BorderStyle="Solid" />
         </asp:GridView>
     </div>
-        <asp:TextBox ID="hidIdx" runat="server" class="jq_idx_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidSiryouKind" runat="server" class="jq_siryou_kind_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidSystemName" runat="server" class="jq_system_name_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidKinouName" runat="server" class="jq_kinou_name_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidEdpNo" runat="server" class="jq_edp_no_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidEditorKind" runat="server" class="jq_editor_kind_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidConnectNo" runat="server" class="jq_connect_no_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidMenuNo" runat="server" class="jq_menu_no_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidFileName" runat="server" class="jq_file_name_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidDataTxt" runat="server" class="jq_data_txt_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidDataHtml" runat="server" class="jq_data_html_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidShareType" runat="server" class="jq_share_type_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidDataOwner" runat="server" class="jq_data_owner_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidTourokuTime" runat="server" class="jq_touroku_time_ipt" style=" visibility:hidden;"></asp:TextBox>
-        <asp:TextBox ID="hidOldRowIdx" runat="server" class="jq_hidOldRowIdx" style=" visibility:hidden;"></asp:TextBox>
+
+    <asp:TextBox ID="hidIdx" runat="server" class="jq_idx_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidSiryouKind" runat="server" class="jq_siryou_kind_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidSystemName" runat="server" class="jq_system_name_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidKinouName" runat="server" class="jq_kinou_name_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidEdpNo" runat="server" class="jq_edp_no_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidEditorKind" runat="server" class="jq_editor_kind_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidConnectNo" runat="server" class="jq_connect_no_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidMenuNo" runat="server" class="jq_menu_no_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidFileName" runat="server" class="jq_file_name_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidDataTxt" runat="server" class="jq_data_txt_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidDataHtml" runat="server" class="jq_data_html_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidShareType" runat="server" class="jq_share_type_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidDataOwner" runat="server" class="jq_data_owner_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidTourokuTime" runat="server" class="jq_touroku_time_ipt" style=" visibility:hidden;"></asp:TextBox>
+    <asp:TextBox ID="hidOldRowIdx" runat="server" class="jq_hidOldRowIdx" style=" visibility:hidden;"></asp:TextBox>
 
 <%--<div id="div1" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:580px;margin-left:0px; width:1020px; margin-top :0px; border-collapse :collapse ; background-color:#eee;">
     <asp:GridView CssClass ="jq_ms" Width="1000px"  runat="server" ID="GridView1" EnableTheming="True" ShowHeader="True" AutoGenerateColumns="True" BorderColor="black" style=" margin-top :-1px; " TabIndex="-1" >

@@ -109,23 +109,24 @@ textarea {
 
     input[type="submit"],
     input[type="button"],
+    input[type="reset"],
     button {
         border: 1px solid #787878;
         cursor: pointer;
         font-weight: 600;
         padding: 2px;
         margin-right: 2px;
-        width: auto;
-
-    padding: 2px;
-    margin-right: 2px;
-    border-radius:6px;
-    text-decoration:none;
-	background:#8bf13c;
-	color:#000;
-	-webkit-transition:all linear 0.30s;
-	-moz-transition:all linear 0.30s;
-	transition:all linear 0.30s;
+        width:auto;
+        padding: 4px;
+        margin-right: 2px;
+        border-radius:6px;
+        text-decoration:none;
+	    background:#8bf13c;
+	    color:#000;
+	    -webkit-transition:all linear 0.30s;
+	    -moz-transition:all linear 0.30s;
+	    transition:all linear 0.30s;
+        padding-left:6px; padding-right:6px;
 
     }
 
@@ -298,6 +299,7 @@ td {
     float:right;
     font-size:8px;
     border-radius:16px;
+    background-color:#ccc;
 }
 .btn_main{
     height:22px;    
@@ -305,8 +307,8 @@ td {
     border: 1px solid #787878;
     cursor: pointer;
     font-size: 11px;
-
 }
+
 .btn_main:hover {
     background-color: #fff;
     color:#000;

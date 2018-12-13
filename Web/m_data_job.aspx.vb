@@ -58,7 +58,7 @@ Partial Class m_data_job
             Dim tbxSiryouKind_key As String = Request.Form("tbxSiryouKind_key")
             Dim tbxSystemName_key As String = Request.Form("tbxSystemName_key")
             Dim tbxKinouName_key As String = Request.Form("tbxKinouName_key")
-            Dim tbxEdpNo_key As String = Request.Form("tbxEdpNo_key").Split(":")(0)
+            Dim tbxEdpNo_key As String = Request.Form("tbxEdpNo_key")
             Dim tbxEditorKind_key As String = Request.Form("tbxEditorKind_key")
             Dim tbxConnectNo_key As String = Request.Form("tbxConnectNo_key")
             Dim tbxMenuNo_key As String = Request.Form("tbxMenuNo_key")
@@ -76,6 +76,8 @@ Partial Class m_data_job
             Dim tbxShareType As String = Request.Form("tbxShareType")
             Dim tbxDataOwner As String = Request.Form("tbxDataOwner")
             Dim tbxTourokuTime As String = Request.Form("tbxTourokuTime")
+
+            Dim txt As String = Request.Form("txt_key")
 
             If Request.Form("ajaxActionType") = "txt" Then
                 Dim dt As DataTable = BC.SelMDataJob(tbxIdx_key, "", "", "", "", "", "", "")
@@ -108,7 +110,17 @@ Partial Class m_data_job
                 gvMs.RenderControl(htw)
                 Response.Write(htw.InnerWriter.ToString)
                 Response.End()
-
+            ElseIf Request.Form("ajaxActionType") = "select_like" Then
+                Response.ClearContent()
+                Dim dt As DataTable = BC.SelMDataJobLike("", tbxSiryouKind_key, tbxSystemName_key, tbxKinouName_key, tbxEdpNo_key, tbxEditorKind_key, tbxConnectNo_key, tbxMenuNo_key, txt)
+                Me.gvMs.DataSource = dt
+                gvMs.DataBind()
+                Dim sb As New System.Text.StringBuilder()
+                Dim sw As New System.IO.StringWriter(sb)
+                Dim htw As New HtmlTextWriter(sw)
+                gvMs.RenderControl(htw)
+                Response.Write(htw.InnerWriter.ToString)
+                Response.End()
             ElseIf Request.Form("ajaxActionType") = "select_itibu" Then
                 Response.ClearContent()
                 Dim dt As DataTable = BC.SelMDataJob("", "", tbxSystemName_key, "", tbxEdpNo_key, "", "", "")
@@ -145,7 +157,7 @@ Partial Class m_data_job
                 Me.gvSql.DataSource = dt
                 gvSql.DataBind()
 
-   
+
 
 
 

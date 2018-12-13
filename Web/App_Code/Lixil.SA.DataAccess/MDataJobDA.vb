@@ -187,6 +187,96 @@ Public Class MDataJobDA
 
     End Function
 
+
+    ''' <summary>
+    ''' 資料保存する
+    ''' 仕事データ情報を検索する
+    ''' </summary>
+    '''<param name="idx_key">INDEX</param>
+    '''<param name="siryouKind_key">資料分類</param>
+    '''<param name="systemName_key">システム名</param>
+    '''<param name="kinouName_key">機能名</param>
+    '''<param name="edpNo_key">EDP番号</param>
+    '''<param name="editorKind_key">Editor種類</param>
+    '''<param name="connectNo_key">DB接続No</param>
+    '''<param name="menuNo_key">メニューNo</param>
+    ''' <returns>仕事データ情報</returns>
+    ''' <remarks></remarks>
+    ''' <history>
+    ''' <para>2018/12/10  李松涛さん 新規作成 </para>
+    ''' </history>
+
+    Public Function SelMDataJobLike(ByVal idx_key As String, _
+           ByVal siryouKind_key As String, _
+           ByVal systemName_key As String, _
+           ByVal kinouName_key As String, _
+           ByVal edpNo_key As String, _
+           ByVal editorKind_key As String, _
+           ByVal connectNo_key As String, _
+           ByVal menuNo_key As String, _
+           ByVal txt As String) As Data.DataTable
+        'EMAB障害対応情報の格納処理
+        EMAB.AddMethodEntrance(MyClass.GetType.FullName & "." & MyMethod.GetCurrentMethod.Name, _
+           idx_key, _
+           siryouKind_key, _
+           systemName_key, _
+           kinouName_key, _
+           edpNo_key, _
+           editorKind_key, _
+           connectNo_key, _
+           menuNo_key)
+        'SQLコメント
+        '--**テーブル：仕事データ : m_data_job
+        Dim sb As New StringBuilder
+        'SQL文
+        sb.AppendLine("SELECT")
+        sb.AppendLine("idx")                                                       'INDEX
+        sb.AppendLine(", siryou_kind")                                             '資料分類
+        sb.AppendLine(", system_name")                                             'システム名
+        sb.AppendLine(", kinou_name")                                              '機能名
+        sb.AppendLine(", edp_no")                                                  'EDP番号
+        sb.AppendLine(", editor_kind")                                             'Editor種類
+        sb.AppendLine(", connect_no")                                              'DB接続No
+        sb.AppendLine(", menu_no")                                                 'メニューNo
+        sb.AppendLine(", file_name")                                               'ファイル名
+        sb.AppendLine(", data_txt")                                                '内容TXT
+        sb.AppendLine(", data_html")                                               '内容HTML
+        sb.AppendLine(", share_type")                                              '共有
+        sb.AppendLine(", data_owner")                                              '所有者
+        sb.AppendLine(", touroku_time")                                            '登録時間
+
+        sb.AppendLine("FROM m_data_job")
+        sb.AppendLine("WHERE 1=1")
+        sb.AppendLine("AND ((data_txt)  COLLATE Chinese_PRC_CI_AI like '%" & txt.ToLower & "%' or (data_html)  COLLATE Chinese_PRC_CI_AI like '%" & txt.ToLower & "%')")   'INDEX
+
+        If systemName_key <> "" Then
+            sb.AppendLine("AND system_name=@system_name_key")   'システム名
+        End If
+        If kinouName_key <> "" Then
+            sb.AppendLine("AND kinou_name like '%" & kinouName_key & "%'")   '機能名
+        End If
+        If edpNo_key <> "" Then
+            sb.AppendLine("AND edp_no=@edp_no_key")   'EDP番号
+        End If
+
+        'バラメタ格納
+        Dim paramList As New List(Of SqlParameter)
+        paramList.Add(MakeParam("@idx_key", SqlDbType.Int, 4, GetIntValue(idx_key)))
+        paramList.Add(MakeParam("@siryou_kind_key", SqlDbType.NVarChar, 1, siryouKind_key))
+        paramList.Add(MakeParam("@system_name_key", SqlDbType.NVarChar, 20, systemName_key))
+        paramList.Add(MakeParam("@kinou_name_key", SqlDbType.NVarChar, 20, kinouName_key))
+        paramList.Add(MakeParam("@edp_no_key", SqlDbType.NVarChar, 8, edpNo_key))
+        paramList.Add(MakeParam("@editor_kind_key", SqlDbType.NVarChar, 20, editorKind_key))
+        paramList.Add(MakeParam("@connect_no_key", SqlDbType.Int, 4, GetIntValue(connectNo_key)))
+        paramList.Add(MakeParam("@menu_no_key", SqlDbType.NVarChar, 20, menuNo_key))
+
+        Dim dsInfo As New Data.DataSet
+        FillDataset(DataAccessManager.Connection, CommandType.Text, sb.ToString(), dsInfo, "m_data_job", paramList.ToArray)
+
+        Return dsInfo.Tables("m_data_job")
+
+    End Function
+
     ''' <summary>
     ''' 資料保存する
     ''' 仕事データ情報を検索する

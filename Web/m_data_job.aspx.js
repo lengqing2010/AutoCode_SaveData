@@ -31,7 +31,8 @@ function AjaxPost(ajaxActionType) {
             , tbxDataHtml: editor2.getValue()
             , tbxShareType: $('#ddlShareType').val()
             , tbxDataOwner: $('#tbxDataOwner').val()
-            , tbxTourokuTime:''
+            , tbxTourokuTime: ''
+            , txt_key: $('#tbxTxt').val()
         },
         datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
         beforeSend: function () {
@@ -118,7 +119,7 @@ function AjaxPostTxt(ajaxActionType) {
             , tbxSystemName_key: $('#hidSystemName').val()
             , tbxKinouName_key: $('#hidKinouName').val()
             , tbxEdpNo_key: $('#hidEdpNo').val().split(":")[0]
-            , tbxEditorKind_key: $('#hidEditorKind').val()
+            , tbxEditorKind_key:$('#hidEditorKind').val()
             , tbxConnectNo_key: $('#hidConnectNo').val().split(":")[0]
             , tbxMenuNo_key: $('#hidMenuNo').val()
             , tbxIdx: $('#tbxIdx_key').val()
