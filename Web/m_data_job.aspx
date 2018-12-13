@@ -487,7 +487,14 @@
                 }, 200);
             })
 
+            editor.on("change", function (e) {
+                if (editor.curOp && editor.curOp.command.name) { }
+                else alert();
+            });
 
+            editor2.onBlur = function () {
+               // setTimeout(function () { ajax_update(); }, 0);
+            }
 
 
         });
