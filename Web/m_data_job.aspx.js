@@ -7,46 +7,45 @@ function AjaxPost(ajaxActionType) {
     $.ajax({
         type: 'POST',
         url: 'm_data_job.aspx',
-        async:false,
+        async: false,
         data: {
-            ajaxActionType : ajaxActionType
-            , tbxIdx_key:$('#tbxIdx_key').val()
-            , tbxSiryouKind_key:$('#tbxSiryouKind_key').val()
-            , tbxSystemName_key:$('#tbxSystemName_key').val()
-            , tbxKinouName_key:$('#tbxKinouName_key').val()
-            , tbxEdpNo_key: $('#tbxEdpNo_key').val().split(":")[0]
-            , tbxEditorKind_key: $('#ddlType').val()
-            , tbxConnectNo_key: $('#tbxConnectNo_key').val().split(":")[0]
-            , tbxMenuNo_key:$('#tbxMenuNo_key').val()
-            , tbxIdx: $('#tbxIdx_key').val()
-            , tbxSiryouKind: $('#tbxSiryouKind_key').val()
-            , tbxSystemName: $('#tbxSystemName_key').val()
-            , tbxKinouName: $('#tbxKinouName_key').val()
-            , tbxEdpNo: $('#tbxEdpNo_key').val().split(":")[0]
-            , tbxEditorKind: $('#ddlType').val()
-            , tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0]
-            , tbxMenuNo: $('#tbxMenuNo_key').val()
-            , tbxFileName:$('#tbxFileName').val()
-            , tbxDataTxt: editor.getValue()
-            , tbxDataHtml: editor2.getValue()
-            , tbxShareType: $('#ddlShareType').val()
-            , tbxDataOwner: $('#tbxDataOwner').val()
-            , tbxTourokuTime: ''
-            , txt_key: $('#tbxTxt').val()
+            ajaxActionType: ajaxActionType,
+            tbxIdx_key: $('#tbxIdx_key').val(),
+            tbxSiryouKind_key: $('#tbxSiryouKind_key').val(),
+            tbxSystemName_key: $('#tbxSystemName_key').val(),
+            tbxKinouName_key: $('#tbxKinouName_key').val(),
+            tbxEdpNo_key: $('#tbxEdpNo_key').val().split(":")[0],
+            tbxEditorKind_key: $('#ddlType').val(),
+            tbxConnectNo_key: $('#tbxConnectNo_key').val().split(":")[0],
+            tbxMenuNo_key: $('#tbxMenuNo_key').val(),
+            tbxIdx: $('#tbxIdx_key').val(),
+            tbxSiryouKind: $('#tbxSiryouKind_key').val(),
+            tbxSystemName: $('#tbxSystemName_key').val(),
+            tbxKinouName: $('#tbxKinouName_key').val(),
+            tbxEdpNo: $('#tbxEdpNo_key').val().split(":")[0],
+            tbxEditorKind: $('#ddlType').val(),
+            tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0],
+            tbxMenuNo: $('#tbxMenuNo_key').val(),
+            tbxFileName: $('#tbxFileName').val(),
+            tbxDataTxt: editor.getValue(),
+            tbxDataHtml: editor2.getValue(),
+            tbxShareType: $('#ddlShareType').val(),
+            tbxDataOwner: $('#tbxDataOwner').val(),
+            tbxTourokuTime: '',
+            txt_key: $('#tbxTxt').val()
         },
-        datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
+        datatype: 'json', //'xml', 'html', 'script', 'json', 'jsonp', 'text'.
         beforeSend: function () {
             WaitPanelRemove();
         },
         //when success
         success: function (data) {
-            
+
             document.getElementById("divGvw").innerHTML = data;
             MsInit();
         },
         //when complete
-        complete: function (XMLHttpRequest, textStatus) {
-        },
+        complete: function (XMLHttpRequest, textStatus) { },
         //when error
         error: function () {
             WaitPanelRemove();
@@ -62,31 +61,31 @@ function AjaxPostUpdate(ajaxActionType) {
         url: 'm_data_job.aspx',
         async: false,
         data: {
-            ajaxActionType: ajaxActionType
-            , tbxIdx_key: $('#hidIdx').val()
-            , tbxSiryouKind_key: $('#hidSiryouKind').val()
-            , tbxSystemName_key: $('#hidSystemName').val()
-            , tbxKinouName_key: $('#hidKinouName').val()
-            , tbxEdpNo_key: $('#hidEdpNo').val().split(":")[0]
-            , tbxEditorKind_key: $('#hidEditorKind').val()
-            , tbxConnectNo_key: $('#hidConnectNo').val().split(":")[0]
-            , tbxMenuNo_key: $('#hidMenuNo').val()
-            , tbxIdx: $('#tbxIdx_key').val()
-            , tbxSiryouKind: $('#tbxSiryouKind_key').val()
-            , tbxSystemName: $('#tbxSystemName_key').val()
-            , tbxKinouName: $('#tbxKinouName_key').val()
-            , tbxEdpNo: $('#tbxEdpNo_key').val().split(":")[0]
-            , tbxEditorKind: $('#ddlType').val()
-            , tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0]
-            , tbxMenuNo: $('#tbxMenuNo_key').val()
-            , tbxFileName: $('#tbxFileName').val()
-            , tbxDataTxt: editor.getValue()
-            , tbxDataHtml: editor2.getValue()
-            , tbxShareType: $('#ddlShareType').val()
-            , tbxDataOwner: $('#tbxDataOwner').val()
-            , tbxTourokuTime: ''
+            ajaxActionType: ajaxActionType,
+            tbxIdx_key: $('#hidIdx').val(),
+            tbxSiryouKind_key: $('#hidSiryouKind').val(),
+            tbxSystemName_key: $('#hidSystemName').val(),
+            tbxKinouName_key: $('#hidKinouName').val(),
+            tbxEdpNo_key: $('#hidEdpNo').val().split(":")[0],
+            tbxEditorKind_key: $('#hidEditorKind').val(),
+            tbxConnectNo_key: $('#hidConnectNo').val().split(":")[0],
+            tbxMenuNo_key: $('#hidMenuNo').val(),
+            tbxIdx: $('#tbxIdx_key').val(),
+            tbxSiryouKind: $('#tbxSiryouKind_key').val(),
+            tbxSystemName: $('#tbxSystemName_key').val(),
+            tbxKinouName: $('#tbxKinouName_key').val(),
+            tbxEdpNo: $('#tbxEdpNo_key').val().split(":")[0],
+            tbxEditorKind: $('#ddlType').val(),
+            tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0],
+            tbxMenuNo: $('#tbxMenuNo_key').val(),
+            tbxFileName: $('#tbxFileName').val(),
+            tbxDataTxt: editor.getValue(),
+            tbxDataHtml: editor2.getValue(),
+            tbxShareType: $('#ddlShareType').val(),
+            tbxDataOwner: $('#tbxDataOwner').val(),
+            tbxTourokuTime: ''
         },
-        datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
+        datatype: 'json', //'xml', 'html', 'script', 'json', 'jsonp', 'text'.
         beforeSend: function () {
             WaitPanelShow('');
         },
@@ -94,6 +93,58 @@ function AjaxPostUpdate(ajaxActionType) {
         success: function (data) {
             document.getElementById("divGvw").innerHTML = data;
             MsInit();
+        },
+        //when complete
+        complete: function (XMLHttpRequest, textStatus) {
+            WaitPanelRemove();
+        },
+        //when error
+        error: function () {
+            alert('Error');
+        }
+    });
+}
+
+
+//AJAX Reload GridView (Update)
+function AjaxPostUpdateTxt(ajaxActionType) {
+    $.ajax({
+        type: 'POST',
+        url: 'm_data_job.aspx',
+        async: false,
+        data: {
+            ajaxActionType: ajaxActionType,
+            tbxIdx_key: $('#hidIdx').val(),
+            tbxSiryouKind_key: $('#hidSiryouKind').val(),
+            tbxSystemName_key: $('#hidSystemName').val(),
+            tbxKinouName_key: $('#hidKinouName').val(),
+            tbxEdpNo_key: $('#hidEdpNo').val().split(":")[0],
+            tbxEditorKind_key: $('#hidEditorKind').val(),
+            tbxConnectNo_key: $('#hidConnectNo').val().split(":")[0],
+            tbxMenuNo_key: $('#hidMenuNo').val(),
+            tbxIdx: $('#tbxIdx_key').val(),
+            tbxSiryouKind: $('#tbxSiryouKind_key').val(),
+            tbxSystemName: $('#tbxSystemName_key').val(),
+            tbxKinouName: $('#tbxKinouName_key').val(),
+            tbxEdpNo: $('#tbxEdpNo_key').val().split(":")[0],
+            tbxEditorKind: $('#ddlType').val(),
+            tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0],
+            tbxMenuNo: $('#tbxMenuNo_key').val(),
+            tbxFileName: $('#tbxFileName').val(),
+            tbxDataTxt: editor.getValue(),
+            tbxDataHtml: editor2.getValue(),
+            tbxShareType: $('#ddlShareType').val(),
+            tbxDataOwner: $('#tbxDataOwner').val(),
+            tbxTourokuTime: ''
+        },
+        datatype: 'json', //'xml', 'html', 'script', 'json', 'jsonp', 'text'.
+        beforeSend: function () {
+            WaitPanelShow('');
+        },
+        //when success
+        success: function (data) {
+            //document.getElementById("divGvw").innerHTML = data;
+            //MsInit();
         },
         //when complete
         complete: function (XMLHttpRequest, textStatus) {
@@ -113,31 +164,31 @@ function AjaxPostTxt(ajaxActionType) {
         url: 'm_data_job.aspx',
         async: false,
         data: {
-            ajaxActionType: ajaxActionType
-            , tbxIdx_key: $('#hidIdx').val()
-            , tbxSiryouKind_key: $('#hidSiryouKind').val()
-            , tbxSystemName_key: $('#hidSystemName').val()
-            , tbxKinouName_key: $('#hidKinouName').val()
-            , tbxEdpNo_key: $('#hidEdpNo').val().split(":")[0]
-            , tbxEditorKind_key:$('#hidEditorKind').val()
-            , tbxConnectNo_key: $('#hidConnectNo').val().split(":")[0]
-            , tbxMenuNo_key: $('#hidMenuNo').val()
-            , tbxIdx: $('#tbxIdx_key').val()
-            , tbxSiryouKind: $('#tbxSiryouKind_key').val()
-            , tbxSystemName: $('#tbxSystemName_key').val()
-            , tbxKinouName: $('#tbxKinouName_key').val()
-            , tbxEdpNo: $('#tbxEdpNo_key').val().split(":")[0]
-            , tbxEditorKind: $('#ddlType').val()
-            , tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0]
-            , tbxMenuNo: $('#tbxMenuNo_key').val()
-            , tbxFileName: $('#tbxFileName').val()
-            , tbxDataTxt: editor.getValue()
-            , tbxDataHtml: editor2.getValue()
-            , tbxShareType: $('#ddlShareType').val()
-            , tbxDataOwner: $('#tbxDataOwner').val()
-            , tbxTourokuTime: ''
+            ajaxActionType: ajaxActionType,
+            tbxIdx_key: $('#hidIdx').val(),
+            tbxSiryouKind_key: $('#hidSiryouKind').val(),
+            tbxSystemName_key: $('#hidSystemName').val(),
+            tbxKinouName_key: $('#hidKinouName').val(),
+            tbxEdpNo_key: $('#hidEdpNo').val().split(":")[0],
+            tbxEditorKind_key: $('#hidEditorKind').val(),
+            tbxConnectNo_key: $('#hidConnectNo').val().split(":")[0],
+            tbxMenuNo_key: $('#hidMenuNo').val(),
+            tbxIdx: $('#tbxIdx_key').val(),
+            tbxSiryouKind: $('#tbxSiryouKind_key').val(),
+            tbxSystemName: $('#tbxSystemName_key').val(),
+            tbxKinouName: $('#tbxKinouName_key').val(),
+            tbxEdpNo: $('#tbxEdpNo_key').val().split(":")[0],
+            tbxEditorKind: $('#ddlType').val(),
+            tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0],
+            tbxMenuNo: $('#tbxMenuNo_key').val(),
+            tbxFileName: $('#tbxFileName').val(),
+            tbxDataTxt: editor.getValue(),
+            tbxDataHtml: editor2.getValue(),
+            tbxShareType: $('#ddlShareType').val(),
+            tbxDataOwner: $('#tbxDataOwner').val(),
+            tbxTourokuTime: ''
         },
-        datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
+        datatype: 'json', //'xml', 'html', 'script', 'json', 'jsonp', 'text'.
         beforeSend: function () {
             WaitPanelShow('');
         },
@@ -171,7 +222,7 @@ function AjaxList(ajaxActionType, ajaxUrl, datalistId) {
         data: {
             ajaxActionType: ajaxActionType
         },
-        datatype: 'text',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
+        datatype: 'text', //'xml', 'html', 'script', 'json', 'jsonp', 'text'.
         beforeSend: function () {
             WaitPanelShow('');
         },
@@ -189,8 +240,7 @@ function AjaxList(ajaxActionType, ajaxUrl, datalistId) {
             WaitPanelRemove();
         },
         //when error
-        error: function () {
-        }
+        error: function () { }
     });
 }
 
@@ -200,25 +250,28 @@ function AjaxSQL(ajaxActionType) {
 
     var sql;
     sql = editor2.session.getTextRange(editor2.getSelectionRange());
-    if (sql == "") { sql = editor2.getValue() }
-    
+    if (sql == "") {
+        sql = editor2.getValue()
+    }
+
 
     $.ajax({
         type: 'POST',
         url: 'm_data_job.aspx',
         async: false,
         data: {
-            ajaxActionType: ajaxActionType
-            , tbxConnectNo_key: $('#hidConnectNo').val().split(":")[0]
-            , sql: sql
+            ajaxActionType: ajaxActionType,
+            tbxConnectNo_key: $('#hidConnectNo').val().split(":")[0],
+            sql: sql
         },
-        datatype: 'json',//'xml', 'html', 'script', 'json', 'jsonp', 'text'.
+        datatype: 'json', //'xml', 'html', 'script', 'json', 'jsonp', 'text'.
         beforeSend: function () {
             WaitPanelShow('');
         },
         //when success
         success: function (data) {
             document.getElementById("divSqlDiv").innerHTML = data;
+            alert("完了");
         },
         //when complete
         complete: function (XMLHttpRequest, textStatus) {
@@ -234,33 +287,40 @@ function AjaxSQL(ajaxActionType) {
 
 
 // 更新
-function ajax_update(){
+function ajax_update() {
     AjaxPostUpdate('update');
+    $("#btnUpdate").css("background-color", "#8bf13c");
+
     $(".jq_ms").find("tr").each(function () {
         if ($(this).find("td")[0].innerText == $("#tbxIdx_key").val()) {
             $(this).click();
             return false;
         }
     });
+
 }
 // 削除
+
 function ajax_delete() {
     if (confirm('Do delelte it ?')) {
         AjaxPost('delete');
     }
-    
+
     //$(".jq_ms tr").last().click();
 }
 // 登録
-function ajax_insert(){
+
+function ajax_insert() {
     AjaxPost('insert');
     $(".jq_ms tr").last().click();
 }
 // 検索
-function ajax_select(){
+
+function ajax_select() {
     AjaxPost('select');
 }
 // 検索
+
 function ajax_select_itibu() {
     AjaxPost('select_itibu');
 }
@@ -296,28 +356,29 @@ $(document).ready(function () {
         AjaxList('DBconnect', 'm_data_job_ajax.aspx', '#tbxConnectNo_key_list');
     });
 
+    var hideTime = 100;
     $("#jianlue").click(function () {
-        $('.jyouken_panel').hide(500);
-        $('#divGvwTitle').hide(500);
-        $('#divGvw').hide(500);
+        $('.jyouken_panel').hide(hideTime);
+        $('#divGvwTitle').hide(hideTime);
+        $('#divGvw').hide(hideTime);
         $('#lblMsg').text($('#tbxFileName').val());
     });
 
     $("#syousai").click(function () {
-        $('.jyouken_panel').show(500);
-        $('#divGvwTitle').show(500);
-        $('#divGvw').show(500);
+        $('.jyouken_panel').show(hideTime);
+        $('#divGvwTitle').show(hideTime);
+        $('#divGvw').show(hideTime);
         $('#lblMsg').text($('#tbxFileName').val());
     });
 
 
     $("#btnCopy").zclip({
         path: "./jquery-zclip-master/ZeroClipboard.swf",
-        copy: function () {//复制内容 
+        copy: function () { //复制内容 
             return document.getElementById('divSqlDiv').innerHTML;
             //return 'aa';
         },
-        afterCopy: function () {//复制成功 
+        afterCopy: function () { //复制成功 
             alert("已复制到剪贴板");
         }
     });
@@ -347,7 +408,7 @@ function MsInit() {
 
         $('#btnUpdate').show();
         $('#btnDelete').show();
-
+        $("#btnUpdate").css("background-color", "#8bf13c");
         $('.jq_upd').removeAttr("disabled");
         $('.jq_del').removeAttr("disabled");
         if (SelectRow == null) { } else {
@@ -380,7 +441,9 @@ function MsInit() {
     /*===============================================================*/
     //明細部↑↓
     $(".jq_ms_div").keydown(function (event) {
-        if (SelectRow == null) { return true; }
+        if (SelectRow == null) {
+            return true;
+        }
 
         var keycode = event.which;
         if (keycode == 38) {
@@ -400,7 +463,3 @@ function MsInit() {
         }
     });
 }
-
-
-
-

@@ -27,7 +27,10 @@
 <form id="form1" runat="server">
         <div class='title_div' style="position:fixed; width:100%;height:auto; background:#fff; margin:0px;
         overflow-y:auto;
-        border-bottom:3px solid #000;margin-top:-15px;">
+        border-bottom:3px solid #000;
+        margin-top:-15px;
+        z-index:10000;
+        ">
             <table border="0">
                 <tr>
                     <td style="border-width:0;width:1000px;">
@@ -35,6 +38,8 @@
                     </td>
                     <td style="border-width:0">
                         <input type ="button" class="btn_main" id="jianlue" value="簡略"  />
+                        <input type ="button" class="btn_main" value="条件部Hid" style="" onclick="$('.jyouken_panel').hide(100);" />
+                        <input type ="button" class="btn_main" value="一覧部Hid" onclick="$('#divGvwTitle,#divGvw').hide(100);"/>
                         <input type ="button" class="btn_main" id="syousai" value="詳細"  />
                         <input type ="reset"  class="btn_main" id="" value="reset" />
                     </td>
@@ -52,7 +57,7 @@
 <!--条件部-->
         <table class='jyouken_panel' cellpadding="0" cellspacing="0" >
             <tr>
-            <td>INDEX : &nbsp;</td>
+            <td><a>INDEX :</a></td>
             <td>
               <asp:TextBox ID="tbxIdx_key" class="jq_idx_key" runat="server" style="width:64px;background-color: #FFFFE0;"></asp:TextBox>
             </td>
@@ -68,7 +73,8 @@
                 
                 </td>
             <td> 
-                <input type ="button" class="btn_hid" value="￣" style="" onclick="$('.jyouken_panel').hide(500);" /></td>
+           
+            </td>
             </tr>
             <tr>
             <td>システム名 : &nbsp</td>
@@ -173,7 +179,7 @@
 
 <!--明細Title部-->
 <div id="divGvwTitle" class='jq_title_div' runat ="server" style="overflow:hidden ;margin-left:0px; width:1080px; margin-top :0px; border-collapse :collapse ;">
-        <input type ="button" value="￣" onclick="$('#divGvwTitle,#divGvw').hide(500);"  class="btn_hid"/>
+   
       <table class='ms_title' style="width:1000px" cellpadding="0" cellspacing="0">
           <tr>
               <td style="width:44px;">
@@ -439,7 +445,7 @@
         $(document).ready(function () {
             editor = ace.edit("editorDiv");
             //设置编辑器样式，对应theme-*.js文件
-            editor.setTheme("ace/theme/twilight");
+            editor.setTheme("ace/theme/clouds");
             //设置代码语言，对应mode-*.js文件
             editor.session.setMode("ace/mode/text");
             //设置打印线是否显示
@@ -488,13 +494,22 @@
             })
 
             editor.on("change", function (e) {
-                if (editor.curOp && editor.curOp.command.name) { }
-                else alert();
+                if (editor.curOp && editor.curOp.command.name) { $("#btnUpdate").css("background-color", "red"); }
+                else {
+                    //AjaxPostUpdateTxt('update_txt');
+                   
+                    //alert();
+                }
+            });
+            editor2.on("change", function (e) {
+                if (editor2.curOp && editor2.curOp.command.name) { $("#btnUpdate").css("background-color", "red"); }
+                else {
+                    //AjaxPostUpdateTxt('update_txt');
+
+                    //alert();
+                }
             });
 
-            editor2.onBlur = function () {
-               // setTimeout(function () { ajax_update(); }, 0);
-            }
 
 
         });

@@ -91,6 +91,11 @@ Partial Class m_data_job
                 Response.End()
             ElseIf Request.Form("ajaxActionType") = "update" Then
                 BC.UpdMDataJob(tbxIdx_key, tbxSiryouKind_key, tbxSystemName_key, tbxKinouName_key, tbxEdpNo_key, tbxEditorKind_key, tbxConnectNo_key, tbxMenuNo_key, tbxIdx, tbxSiryouKind, tbxSystemName, tbxKinouName, tbxEdpNo, tbxEditorKind, tbxConnectNo, tbxMenuNo, tbxFileName, tbxDataTxt, tbxDataHtml, tbxShareType, tbxDataOwner, tbxTourokuTime)
+            ElseIf Request.Form("ajaxActionType") = "update_txt" Then
+                BC.UpdMDataJob(tbxIdx_key, tbxSiryouKind_key, tbxSystemName_key, tbxKinouName_key, tbxEdpNo_key, tbxEditorKind_key, tbxConnectNo_key, tbxMenuNo_key, tbxIdx, tbxSiryouKind, tbxSystemName, tbxKinouName, tbxEdpNo, tbxEditorKind, tbxConnectNo, tbxMenuNo, tbxFileName, tbxDataTxt, tbxDataHtml, tbxShareType, tbxDataOwner, tbxTourokuTime)
+                Response.Write("OK")
+
+                Response.End()
             ElseIf Request.Form("ajaxActionType") = "insert" Then
                 BC.InsMDataJob(tbxIdx, tbxSiryouKind, tbxSystemName, tbxKinouName, tbxEdpNo, tbxEditorKind, tbxConnectNo, tbxMenuNo, tbxFileName, tbxDataTxt, tbxDataHtml, tbxShareType, tbxDataOwner, tbxTourokuTime)
             ElseIf Request.Form("ajaxActionType") = "delete" Then
