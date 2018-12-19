@@ -430,7 +430,19 @@ function MsInit() {
         $('#tbxKinouName_key').val($(this).find("td")[3].innerText);
         $('#tbxEdpNo_key').val($(this).find("td")[4].innerText);
         $('#ddlType').val($(this).find("td")[5].innerText);
+
+        //DB Connect 作成
         $('#tbxConnectNo_key').val($(this).find("td")[6].innerText);
+        AjaxList('DBconnect', 'm_data_job_ajax.aspx', '#tbxConnectNo_key_list');
+
+
+        $("#tbxConnectNo_key_list").find("option").each(function () {
+            if ($(this).val().split(":")[0] == $('#tbxConnectNo_key').val()) {
+                $('#tbxConnectNo_key').val($(this).val());
+            }
+        });
+
+
         $('#tbxMenuNo_key').val($(this).find("td")[7].innerText);
         ajax_txt();
         $('#lblMsg').text($('#tbxFileName').val());
