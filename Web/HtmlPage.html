@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    <script language="javascript">
+
+ function fn() { 
+     var wsh = new ActiveXObject("wscript.shell");
+     document.getElementById("File1").focus();
+
+     setTimeout(function () { wsh.sendKeys("aaa"); alert();}, 1100);
+
+     document.getElementById("File1").click();
+     //setTimeout(function () { document.getElementById("File1").click(); }, 1100);
+     //document.getElementById("File1").click();
+
+
+       
+    }
+
+
+    </script>
+
+</head>
+<body>
+    <input id="File1" type="file" />
+    <input id="txt" type="text" />
+    <input id="Button1" type="button" value="button" onclick="fn()" />
+</body>
+    
+</html>
