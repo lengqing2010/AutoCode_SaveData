@@ -33,7 +33,7 @@
         ">
             <table border="0">
                 <tr>
-                    <td style="border-width:0;width:1000px;">
+                    <td style="border-width:0;width:200px;">
                         <asp:Label ID="lblMsg" runat="server" ForeColor="Red" Font-Size="11" Style="margin-top:4px;"></asp:Label>
                     </td>
                     <td style="border-width:0">
