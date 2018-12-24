@@ -51,17 +51,19 @@
 <!--条件部-->
         <table class='jyouken_panel' cellpadding="0" cellspacing="0" >
             <tr>
-            <td><a>INDEX :</a></td>
             <td>
               <asp:TextBox ID="tbxIdx_key" class="jq_idx_key" runat="server" style="width:64px;background-color: #FFFFE0;"></asp:TextBox>
-            </td>
+                <asp:TextBox ID="tbxSiryouKind_key" placeholder="0:案件、1:技術" class="jq_siryou_kind_key" runat="server" style="width:80px;background-color: #FFFFE0;"></asp:TextBox></td>
+            <td></td>
             <td>
-                資料分類 : &nbsp;</td>
-            <td>
-                 <asp:TextBox ID="tbxSiryouKind_key" class="jq_siryou_kind_key" runat="server" style="width:20px;background-color: #FFFFE0;" Text="0"></asp:TextBox>0:案件、1:技術
-</td>
-            <td> </td>
-            <td> &nbsp;</td>
+                 &nbsp;<asp:TextBox ID="tbxSystemName_key" placeholder="案件名称" class="jq_system_name_key" runat="server" style="width:200px;background-color: #FFFFE0;" list="tbxSystemName_key_list"></asp:TextBox>
+                <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_system_name.aspx')" /></td>
+            <td></td>
+            <td> 
+              <asp:TextBox ID="tbxEdpNo_key" placeholder="EDP" class="jq_edp_no_key" runat="server" style="width:128px;background-color: #FFFFE0;" list="tbxEdpNo_key_list"></asp:TextBox>
+                </td>
+            <td style="width:300px;">  
+              <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_edp.aspx')" />自分：Zxx Company：Rxx</td>
             <td style="width:300px;">  
                 <asp:Button ID="btnSelect" runat="server" Text="検索全部条件" style="height:20px;" CssClass="jq_sel" Width="80" OnClientClick="ajax_select();return false;" />
                 
@@ -71,59 +73,24 @@
             </td>
             </tr>
             <tr>
-            <td>システム名 : &nbsp</td>
-            <td>
-                <asp:TextBox ID="tbxSystemName_key" class="jq_system_name_key" runat="server" style="width:200px;background-color: #FFFFE0;" list="tbxSystemName_key_list"></asp:TextBox>
-                <datalist id="tbxSystemName_key_list"></datalist> VAPM、SA
-                <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_system_name.aspx')" />
-            </td>
-            <td>EDP番号 : &nbsp;</td>
-            <td>
-              <asp:TextBox ID="tbxEdpNo_key" class="jq_edp_no_key" runat="server" style="width:128px;background-color: #FFFFE0;" list="tbxEdpNo_key_list"></asp:TextBox>
-              <datalist id="tbxEdpNo_key_list"></datalist> 自分：Zxxxxxx Company：Rxxxxx
-              <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_edp.aspx')" />
-            </td>
-            <td> 　</td>
-            <td></td>
+            <td colspan="4">
+              <asp:TextBox ID="tbxConnectNo_key" class="jq_connect_no_key" runat="server" style="width:600px;background-color: #FFFFE0;" list="tbxConnectNo_key_list"></asp:TextBox>
+              <datalist id="tbxConnectNo_key_list"></datalist>
+                &nbsp;</td>
             <td> 
+                <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_db_connect.aspx')" />メニューNo : &nbsp;</td>
+            <td> 
+              <asp:TextBox ID="tbxMenuNo_key" class="jq_menu_no_key" runat="server" style="width:200px;background-color: #FFFFE0;"></asp:TextBox></td>
+            <td>  
 
         
                 <asp:Button ID="btnSelectSome" runat="server" Text="検索一部条件" style="height:20px;" CssClass="jq_sel" Width="80" OnClientClick="ajax_select_itibu();return false;" /> 
 
         
                 </td>
-            <td> 
-
-                &nbsp;</td>
-            </tr>
-            <tr>
-            <td>DB接続No : &nbsp;</td>
-            <td colspan="4">
-              <asp:TextBox ID="tbxConnectNo_key" class="jq_connect_no_key" runat="server" style="width:600px;background-color: #FFFFE0;" list="tbxConnectNo_key_list"></asp:TextBox>
-              <datalist id="tbxConnectNo_key_list"></datalist>
-                <input type ="button" value="EDIT" style="height:20px;" onclick="window.open('m_db_connect.aspx')" />
-            </td>
-            <td> </td>
-            <td> &nbsp;</td>
             <td> &nbsp;</td>
             </tr>
             <tr>
-            <td>メニューNo : &nbsp;</td>
-            <td>
-              <asp:TextBox ID="tbxMenuNo_key" class="jq_menu_no_key" runat="server" style="width:200px;background-color: #FFFFE0;"></asp:TextBox>（空白可）
-            </td>
-            <td>
-                USER</td>
-            <td>
-               <asp:TextBox ID="tbxDataOwner" class="jq_data_owner_ipt" runat="server" style="width:164px;"></asp:TextBox>
-</td>
-            <td> </td>
-            <td> &nbsp;</td>
-            <td> &nbsp;</td>
-            <td> &nbsp;</td>
-            </tr>
-            <tr>
-            <td>機能名 : &nbsp;</td>
             <td>
               <asp:TextBox ID="tbxKinouName_key" class="jq_kinou_name_key" runat="server" style="width:200px;background-color: #FFFFE0;"></asp:TextBox>
             </td>
@@ -132,7 +99,10 @@
             <td>
                <asp:TextBox ID="tbxFileName" class="jq_file_name_ipt" runat="server" style="width:204px;"></asp:TextBox></td>
             <td> </td>
-            <td> &nbsp;</td>
+            <td> USER</td>
+            <td> 
+               <asp:TextBox ID="tbxDataOwner" class="jq_data_owner_ipt" runat="server" style="width:164px;"></asp:TextBox>
+                </td>
             <td> &nbsp;</td>
             <td> &nbsp;</td>
             </tr>
@@ -141,7 +111,6 @@
 
 
             <tr>
-            <td>共有</td>
             <td>
                  <asp:DropDownList ID="ddlShareType" runat="server" Width="100px" BackColor="#EEE8AA" CssClass="txt">
                      <asp:ListItem Value="1">1:共有</asp:ListItem>
@@ -157,6 +126,7 @@
 
 
                    </td>
+            <td>   &nbsp;</td>
             <td>   <asp:Button ID="Button1" runat="server" Text="検索一部条件" style="height:20px;" CssClass="jq_sel"
                  Width="80" OnClientClick="AjaxPost('select_like');return false;" /> 
 </td>
