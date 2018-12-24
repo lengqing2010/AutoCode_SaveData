@@ -4,6 +4,11 @@ function AjaxPost(ajaxActionType) {
     $('#btnUpdate').hide();
     $('#btnDelete').hide();
 
+    var rtv;
+    rtv = true;
+
+    
+
     $.ajax({
         type: 'POST',
         url: 'm_data_job.aspx',
@@ -27,8 +32,10 @@ function AjaxPost(ajaxActionType) {
             tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0],
             tbxMenuNo: $('#tbxMenuNo_key').val(),
             tbxFileName: $('#tbxFileName').val(),
-            tbxDataTxt: editor.getValue(),
-            tbxDataHtml: editor2.getValue(),
+            tbxDataTxt: '',
+            tbxDataHtml: encodeURIComponent($("#fraKindeditor")[0].contentWindow.ArrKindEditor[0].html()),
+            tbxDataCode: editor.getValue(),
+            tbxDataSql: editor2.getValue(),
             tbxShareType: $('#ddlShareType').val(),
             tbxDataOwner: $('#tbxDataOwner').val(),
             tbxTourokuTime: '',
@@ -47,15 +54,25 @@ function AjaxPost(ajaxActionType) {
         //when complete
         complete: function (XMLHttpRequest, textStatus) { },
         //when error
-        error: function () {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(XMLHttpRequest.status);
+            alert(XMLHttpRequest.readyState);
+            alert(textStatus);
             WaitPanelRemove();
+            rtv = false;
             alert('Error');
         }
     });
+
+    return rtv;
 }
 
 //AJAX Reload GridView (Update)
 function AjaxPostUpdate(ajaxActionType) {
+
+    var rtv;
+    rtv = true;
+
     $.ajax({
         type: 'POST',
         url: 'm_data_job.aspx',
@@ -79,8 +96,10 @@ function AjaxPostUpdate(ajaxActionType) {
             tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0],
             tbxMenuNo: $('#tbxMenuNo_key').val(),
             tbxFileName: $('#tbxFileName').val(),
-            tbxDataTxt: editor.getValue(),
-            tbxDataHtml: editor2.getValue(),
+            tbxDataTxt: '',
+            tbxDataHtml:encodeURIComponent( $("#fraKindeditor")[0].contentWindow.ArrKindEditor[0].html()),
+            tbxDataCode: editor.getValue(),
+            tbxDataSql: editor2.getValue(),
             tbxShareType: $('#ddlShareType').val(),
             tbxDataOwner: $('#tbxDataOwner').val(),
             tbxTourokuTime: ''
@@ -99,10 +118,15 @@ function AjaxPostUpdate(ajaxActionType) {
             WaitPanelRemove();
         },
         //when error
-        error: function () {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(XMLHttpRequest.status);
+            alert(XMLHttpRequest.readyState);
+            alert(textStatus);
+            rtv = false;
             alert('Error');
         }
     });
+    return rtv;
 }
 
 
@@ -131,8 +155,10 @@ function AjaxPostUpdateTxt(ajaxActionType) {
             tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0],
             tbxMenuNo: $('#tbxMenuNo_key').val(),
             tbxFileName: $('#tbxFileName').val(),
-            tbxDataTxt: editor.getValue(),
-            tbxDataHtml: editor2.getValue(),
+            tbxDataTxt: '',
+            tbxDataHtml: $("#fraKindeditor")[0].contentWindow.ArrKindEditor[0].html(),
+            tbxDataCode: editor.getValue(),
+            tbxDataSql: editor2.getValue(),
             tbxShareType: $('#ddlShareType').val(),
             tbxDataOwner: $('#tbxDataOwner').val(),
             tbxTourokuTime: ''
@@ -159,6 +185,10 @@ function AjaxPostUpdateTxt(ajaxActionType) {
 var splitor = "@!--lis-->||";
 //AJAX editorの値を取得する
 function AjaxPostTxt(ajaxActionType) {
+
+    var rtv;
+    rtv = "";
+
     $.ajax({
         type: 'POST',
         url: 'm_data_job.aspx',
@@ -182,8 +212,10 @@ function AjaxPostTxt(ajaxActionType) {
             tbxConnectNo: $('#tbxConnectNo_key').val().split(":")[0],
             tbxMenuNo: $('#tbxMenuNo_key').val(),
             tbxFileName: $('#tbxFileName').val(),
-            tbxDataTxt: editor.getValue(),
-            tbxDataHtml: editor2.getValue(),
+            tbxDataTxt: '',
+            tbxDataHtml: '',
+            tbxDataCode: '',
+            tbxDataSql: '',
             tbxShareType: $('#ddlShareType').val(),
             tbxDataOwner: $('#tbxDataOwner').val(),
             tbxTourokuTime: ''
@@ -194,13 +226,7 @@ function AjaxPostTxt(ajaxActionType) {
         },
         //when success
         success: function (data) {
-            var arr;
-            arr = data.split(splitor);
-            editor.setValue(arr[0]);
-            editor2.setValue(arr[1]);
-            $('#ddlShareType').val(arr[2]);
-            $('#tbxDataOwner').val(arr[3]);
-
+            rtv = data;
         },
         //when complete
         complete: function (XMLHttpRequest, textStatus) {
@@ -211,6 +237,7 @@ function AjaxPostTxt(ajaxActionType) {
             alert('Error');
         }
     });
+    return rtv;
 }
 
 // Do Ajax textboxのlist
@@ -288,15 +315,18 @@ function AjaxSQL(ajaxActionType) {
 
 // 更新
 function ajax_update() {
-    AjaxPostUpdate('update');
-    $("#btnUpdate").css("background-color", "#8bf13c");
 
-    $(".jq_ms").find("tr").each(function () {
-        if ($(this).find("td")[0].innerText == $("#tbxIdx_key").val()) {
-            $(this).click();
-            return false;
-        }
-    });
+    if (AjaxPostUpdate('update')) {
+        $("#btnUpdate").css("background-color", "#8bf13c");
+        $(".jq_ms").find("tr").each(function () {
+            if ($(this).find("td")[0].innerText == $("#tbxIdx_key").val()) {
+                $(this).click();
+                return false;
+            }
+        });
+    }
+
+
 
 }
 // 削除
@@ -305,14 +335,16 @@ function ajax_delete() {
     if (confirm('Do delelte it ?')) {
         AjaxPost('delete');
     }
-
-    //$(".jq_ms tr").last().click();
 }
 // 登録
 
 function ajax_insert() {
-    AjaxPost('insert');
-    $(".jq_ms tr").last().click();
+    if (AjaxPost('insert')) {
+        $(".jq_ms tr").last().click();
+        return true;
+    } else {
+        return false;
+    }
 }
 // 検索
 
@@ -326,8 +358,27 @@ function ajax_select_itibu() {
 }
 
 
-function ajax_txt() {
-    AjaxPostTxt('txt');
+function SetText() {
+
+    //データを取得する
+    var data;
+    data = AjaxPostTxt('txt');
+
+    var arr;
+    arr = data.split(splitor);
+    var kindEdior = $("#fraKindeditor")[0].contentWindow.ArrKindEditor[0];
+    $("#fraKindeditor")[0].contentWindow.ArrKindEditor[0].html(decodeURIComponent(arr[1]));
+
+
+    editor.setValue(arr[2]);
+    editor2.setValue(arr[3]);
+
+
+    $('#ddlShareType').val(arr[4]);
+    $('#tbxDataOwner').val(arr[5]);
+
+
+
 }
 
 //システム名
@@ -444,7 +495,7 @@ function MsInit() {
 
 
         $('#tbxMenuNo_key').val($(this).find("td")[7].innerText);
-        ajax_txt();
+        SetText();
         $('#lblMsg').text($('#tbxFileName').val());
     })
 

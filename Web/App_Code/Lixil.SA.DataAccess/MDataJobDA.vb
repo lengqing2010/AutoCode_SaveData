@@ -241,14 +241,23 @@ Public Class MDataJobDA
         sb.AppendLine(", file_name")                                               'ファイル名
         sb.AppendLine(", data_txt")                                                '内容TXT
         sb.AppendLine(", data_html")                                               '内容HTML
+
+        sb.AppendLine(", data_code")
+        sb.AppendLine(", data_sql")
+
+
         sb.AppendLine(", share_type")                                              '共有
         sb.AppendLine(", data_owner")                                              '所有者
         sb.AppendLine(", touroku_time")                                            '登録時間
 
         sb.AppendLine("FROM m_data_job")
         sb.AppendLine("WHERE 1=1")
-        sb.AppendLine("AND ((data_txt)  COLLATE Chinese_PRC_CI_AI like '%" & txt.ToLower & "%' or (data_html)  COLLATE Chinese_PRC_CI_AI like '%" & txt.ToLower & "%')")   'INDEX
-
+        sb.AppendLine("AND (")   'INDEX
+        sb.AppendLine("data_txt COLLATE Chinese_PRC_CI_AI like '%" & txt.ToLower & "%'")   'INDEX
+        sb.AppendLine("Or data_html COLLATE Chinese_PRC_CI_AI like '%" & txt.ToLower & "%'")
+        sb.AppendLine("Or data_sql COLLATE Chinese_PRC_CI_AI like '%" & txt.ToLower & "%'")
+        sb.AppendLine("Or data_code COLLATE Chinese_PRC_CI_AI like '%" & txt.ToLower & "%'")
+        sb.AppendLine(")")   'INDEX
         If systemName_key <> "" Then
             sb.AppendLine("AND system_name=@system_name_key")   'システム名
         End If
@@ -329,6 +338,10 @@ Public Class MDataJobDA
         sb.AppendLine(", file_name")                                               'ファイル名
         sb.AppendLine(", data_txt")                                                '内容TXT
         sb.AppendLine(", data_html")                                               '内容HTML
+
+        sb.AppendLine(", data_code")
+        sb.AppendLine(", data_sql")
+
         sb.AppendLine(", share_type")                                              '共有
         sb.AppendLine(", data_owner")                                              '所有者
         sb.AppendLine(", touroku_time")                                            '登録時間
@@ -429,6 +442,8 @@ Public Class MDataJobDA
                ByVal fileName As String, _
                ByVal dataTxt As String, _
                ByVal dataHtml As String, _
+               ByVal dataCode As String, _
+               ByVal dataSql As String, _
                ByVal shareType As String, _
                ByVal dataOwner As String, _
                ByVal tourokuTime As String) As Boolean
@@ -473,6 +488,9 @@ Public Class MDataJobDA
         sb.AppendLine(", file_name=@file_name")   'ファイル名
         sb.AppendLine(", data_txt=@data_txt")   '内容TXT
         sb.AppendLine(", data_html=@data_html")   '内容HTML
+        sb.AppendLine(", data_code=@data_code")
+        sb.AppendLine(", data_sql=@data_sql")
+
         sb.AppendLine(", share_type=@share_type")   '共有
         sb.AppendLine(", data_owner=@data_owner")   '所有者
         sb.AppendLine(", touroku_time=@touroku_time")   '登録時間
@@ -526,6 +544,9 @@ Public Class MDataJobDA
         paramList.Add(MakeParam("@file_name", SqlDbType.NVarChar, 100, fileName))
         paramList.Add(MakeParam("@data_txt", SqlDbType.NText, 0, dataTxt))
         paramList.Add(MakeParam("@data_html", SqlDbType.NText, 0, dataHtml))
+        paramList.Add(MakeParam("@data_code", SqlDbType.NText, 0, dataCode))
+        paramList.Add(MakeParam("@data_sql", SqlDbType.NText, 0, dataSql))
+
         paramList.Add(MakeParam("@share_type", SqlDbType.NVarChar, 1, shareType))
         paramList.Add(MakeParam("@data_owner", SqlDbType.NVarChar, 10, dataOwner))
         paramList.Add(MakeParam("@touroku_time", SqlDbType.Date, 24, IIf(tourokuTime = "", DBNull.Value, tourokuTime)))
@@ -572,6 +593,8 @@ Public Class MDataJobDA
                ByVal fileName As String, _
                ByVal dataTxt As String, _
                ByVal dataHtml As String, _
+               ByVal dataCode As String, _
+               ByVal dataSql As String, _
                ByVal shareType As String, _
                ByVal dataOwner As String, _
                ByVal tourokuTime As String) As Boolean
@@ -608,6 +631,8 @@ Public Class MDataJobDA
         sb.AppendLine(", file_name")                                               'ファイル名
         sb.AppendLine(", data_txt")                                                '内容TXT
         sb.AppendLine(", data_html")                                               '内容HTML
+        sb.AppendLine(", data_code")
+        sb.AppendLine(", data_sql")
         sb.AppendLine(", share_type")                                              '共有
         sb.AppendLine(", data_owner")                                              '所有者
         sb.AppendLine(", touroku_time")                                            '登録時間
@@ -625,6 +650,10 @@ Public Class MDataJobDA
         sb.AppendLine(", @file_name")                                                  'ファイル名
         sb.AppendLine(", @data_txt")                                                   '内容TXT
         sb.AppendLine(", @data_html")                                                  '内容HTML
+
+        sb.AppendLine(", @data_code")
+        sb.AppendLine(", @data_sql")
+
         sb.AppendLine(", @share_type")                                                 '共有
         sb.AppendLine(", @data_owner")                                                 '所有者
         sb.AppendLine(", @touroku_time")                                               '登録時間
@@ -638,11 +667,17 @@ Public Class MDataJobDA
         paramList.Add(MakeParam("@kinou_name", SqlDbType.NVarChar, 20, kinouName))
         paramList.Add(MakeParam("@edp_no", SqlDbType.NVarChar, 8, edpNo))
         paramList.Add(MakeParam("@editor_kind", SqlDbType.NVarChar, 20, editorKind))
+
         paramList.Add(MakeParam("@connect_no", SqlDbType.Int, 4, GetIntValue(connectNo)))
+
         paramList.Add(MakeParam("@menu_no", SqlDbType.NVarChar, 20, menuNo))
         paramList.Add(MakeParam("@file_name", SqlDbType.NVarChar, 100, fileName))
         paramList.Add(MakeParam("@data_txt", SqlDbType.NText, 0, dataTxt))
         paramList.Add(MakeParam("@data_html", SqlDbType.NText, 0, dataHtml))
+
+        paramList.Add(MakeParam("@data_code", SqlDbType.NText, 0, dataCode))
+        paramList.Add(MakeParam("@data_sql", SqlDbType.NText, 0, dataSql))
+
         paramList.Add(MakeParam("@share_type", SqlDbType.NVarChar, 1, shareType))
         paramList.Add(MakeParam("@data_owner", SqlDbType.NVarChar, 10, dataOwner))
         paramList.Add(MakeParam("@touroku_time", SqlDbType.Date, 24, IIf(tourokuTime = "", DBNull.Value, tourokuTime)))
@@ -749,7 +784,7 @@ Public Class MDataJobDA
         'EMAB障害対応情報の格納処理
         EMAB.AddMethodEntrance(MyClass.GetType.FullName & "." & MyMethod.GetCurrentMethod.Name)
         If v Is DBNull.Value Or v.ToString = "" Then
-            Return DBNull.Value
+            Return 0
 
         Else
             Return Convert.ToInt32(v)

@@ -203,6 +203,8 @@ Public Class MDataJobBC
                ByVal fileName As String, _
                ByVal dataTxt As String, _
                ByVal dataHtml As String, _
+               ByVal dataCode As String, _
+               ByVal dataSql As String, _
                ByVal shareType As String, _
                ByVal dataOwner As String, _
                ByVal tourokuTime As String) As Boolean
@@ -252,6 +254,8 @@ Public Class MDataJobBC
                fileName, _
                dataTxt, _
                dataHtml, _
+               dataCode, _
+               dataSql, _
                shareType, _
                dataOwner, _
                tourokuTime)
@@ -293,6 +297,8 @@ Public Class MDataJobBC
                ByVal fileName As String, _
                ByVal dataTxt As String, _
                ByVal dataHtml As String, _
+               ByVal dataCode As String, _
+               ByVal dataSql As String, _
                ByVal shareType As String, _
                ByVal dataOwner As String, _
                ByVal tourokuTime As String) As Boolean
@@ -326,6 +332,8 @@ Public Class MDataJobBC
                fileName, _
                dataTxt, _
                dataHtml, _
+               dataCode, _
+               dataSql, _
                shareType, _
                dataOwner, _
                tourokuTime)

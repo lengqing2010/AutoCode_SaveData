@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="m_data_job.aspx.vb" Inherits="m_data_job" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="m_data_job.aspx.vb" Inherits="m_data_job" EnableEventValidation="false"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -14,7 +14,7 @@
     <script language="javascript" type="text/javascript" src="./jquery-zclip-master/jquery.zclip.js"></script>
     
     <script language="javascript" type="text/javascript" src="./JidouTemp.js"></script>
-    <script language="javascript" type="text/javascript" src="./m_data_job.aspx.js"></script>
+    <script language="javascript" type="text/javascript" src="./m_data_job.aspx.js?ver=122.0"></script>
 
     <!--Editor Import-->
     <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
@@ -29,8 +29,7 @@
         overflow-y:auto;
         border-bottom:3px solid #000;
         margin-top:-15px;
-        z-index:10000;
-        ">
+        z-index:10000;">
             <table border="0">
                 <tr>
                     <td style="border-width:0;width:200px;">
@@ -46,14 +45,9 @@
                 </tr>
             </table>         
         </div>
-    
-    
     <hr /><hr /><hr />
 
     <div style="">
-       
-               
-        
 <!--条件部-->
         <table class='jyouken_panel' cellpadding="0" cellspacing="0" >
             <tr>
@@ -235,6 +229,29 @@
             <tr>
                 <td style="width:400px; border-style:none;">
 
+  
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+<asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="jq_ins" Width="80" OnClientClick="ajax_insert();return false;" />
+<asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="jq_upd" Width="80" OnClientClick="ajax_update();return false;" /> 
+<asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="jq_del" Width="80" OnClientClick="ajax_delete();return false;" />
+
+                </td>
+               
+                <td style=" border-style:none;">
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="height:480px;width:1230px; margin-top:5px; ">
+            <iframe id="fraKindeditor" src="kindeditor-master/asp.net/demo.aspx" width="1170" height="555">
+            </iframe>
+    </div>
+    <br /><br /><br /><br />
+    <hr />
 
         <asp:DropDownList ID="ddlType" runat="server" Width="100px" BackColor="#8bf13c" CssClass="txt">
             <asp:ListItem Value=""></asp:ListItem>
@@ -382,29 +399,15 @@
             <asp:ListItem Value="xquery">XQuery</asp:ListItem>
             <asp:ListItem Value="yaml">YAML</asp:ListItem>
             <asp:ListItem Value="django">Django</asp:ListItem>
-        </asp:DropDownList>  
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-       <asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="jq_ins" Width="80" OnClientClick="ajax_insert();return false;" />
-        <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="jq_upd" Width="80" OnClientClick="ajax_update();return false;" /> 
-        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="jq_del" Width="80" OnClientClick="ajax_delete();return false;" />
-
-                </td>
-               
-                <td style=" border-style:none;">
-
-         <asp:Button ID="btnRunSQLSELECT" runat="server" Text="SQL SELECT" CssClass="" Width="180" OnClientClick="AjaxSQL('sql_select');return false;" />
+        </asp:DropDownList>
+             <asp:Button ID="btnRunSQLSELECT" runat="server" Text="SQL SELECT" CssClass="" Width="180" OnClientClick="AjaxSQL('sql_select');return false;" />
         <asp:Button ID="btnRunSQLRUN" runat="server" Text="SQL RUN" CssClass="" Width="180" OnClientClick="AjaxSQL('sql_run');return false;" />
 
-
-                </td>
-            </tr>
-        </table>
+    <div style="height:420px;width:1230px; margin-top:5px; ">
+        <div style="height:400px;width:560px;float:left;" id="editorDiv"></div>
+        <div style="height:400px;width:600px; " id="editorDiv2"></div>
     </div>
 
-    <div style="height:420px;width:1200px; margin-top:5px; ">
-        <div style="height:400px;width:400px;float:left;" id="editorDiv"></div>
-        <div style="height:400px;width:800px; " id="editorDiv2"></div>
-    </div>
 
     <input type ="button" id="btnCopy" value="COPY" style="height:40px;" onclick="" />
     <div id="divSqlDiv" class='jq_ms_div' runat ="server" style="overflow:scroll ; height:480px;margin-left:0px; width:100%; margin-top :0px; border-collapse :collapse ; background-color:#eee;">
@@ -445,7 +448,7 @@
         $(document).ready(function () {
             editor = ace.edit("editorDiv");
             //设置编辑器样式，对应theme-*.js文件
-            editor.setTheme("ace/theme/clouds");
+            editor.setTheme("ace/theme/monokai");
             //设置代码语言，对应mode-*.js文件
             editor.session.setMode("ace/mode/text");
             //设置打印线是否显示
@@ -466,7 +469,7 @@
 
             editor2 = ace.edit("editorDiv2");
             //设置编辑器样式，对应theme-*.js文件
-            editor2.setTheme("ace/theme/clouds");
+            editor2.setTheme("ace/theme/monokai");
             //设置代码语言，对应mode-*.js文件
             editor2.session.setMode("ace/mode/javascript");
             //设置打印线是否显示
